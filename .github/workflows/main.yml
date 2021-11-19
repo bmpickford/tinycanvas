@@ -1,25 +1,30 @@
 name: CI
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
+on: [ push ]
   workflow_dispatch:
 
 jobs:
-  build-and-test:
+  ci:
     runs-on: ubuntu-latest
+    container: lironavon/docker-puppeteer-container:14.16.0
+    env:
+      CI: true
     steps:
-      - uses: actions/checkout@v2
-      - uses: borales/actions-yarn@v2.3.0
+      - name: setup
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: node_modules-${{ hashFiles('**/yarn.lock')}}
+      - name: install dependencies
+        uses: borales/actions-yarn@v2.3.0
         with:
           cmd: install
-      - uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: build
-      - uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: test
+      - name: build
+        run: npm build
+      - name: test
+        run: npm test
   

@@ -1,7 +1,10 @@
 import { puppeteerLauncher } from '@web/test-runner-puppeteer';
 
 export default {
-  browsers: [puppeteerLauncher({ concurrency: 1 })],
+  browsers: [puppeteerLauncher({
+    launchOptions: { args: ['--no-sandbox', '--disable-setuid-sandbox'] },
+    concurrency: 1
+  })],
   testRunnerHtml: testFramework =>
     `<html>
       <body>

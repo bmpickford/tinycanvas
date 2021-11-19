@@ -13,17 +13,13 @@ jobs:
         uses: actions/checkout@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: node_modules-${{ hashFiles('**/yarn.lock')}}
       - name: install dependencies
         uses: borales/actions-yarn@v2.3.0
         with:
           cmd: install
       - name: build
         run: npm build
-      - name: test
+      - name: Install dependencies and run tests
+        uses: microsoft/playwright-github-action@v1
         run: npm test
   

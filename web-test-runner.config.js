@@ -1,10 +1,8 @@
-import { puppeteerLauncher } from '@web/test-runner-puppeteer';
-
+import { playwrightLauncher } from '@web/test-runner-playwright';
 export default {
-  browsers: [puppeteerLauncher({
-    launchOptions: { args: ['--no-sandbox', '--disable-setuid-sandbox'] },
-    concurrency: 1
-  })],
+  browsers: [
+    playwrightLauncher({ product: 'chromium' }),
+  ],
   testRunnerHtml: testFramework =>
     `<html>
       <body>

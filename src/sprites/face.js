@@ -1,4 +1,4 @@
-import { context, canvas } from '../canvas';
+import { context } from '../canvas';
 
 /**
  * @class Face

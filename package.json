@@ -5,9 +5,13 @@
   "license": "MIT",
   "private": true,
   "type": "module",
+  "files": [
+    "dist/"
+  ],
   "size-limit": [
     {
-      "path": "dist/*.js"
+      "path": "dist/*.js",
+      "limit": "10 kB"
     }
   ],
   "scripts": {
@@ -15,7 +19,8 @@
     "build": "rollup -c rollup.config.js",
     "test": "web-test-runner test/**/*.test.js --node-resolve",
     "test:watch": "web-test-runner \"test/**/*.test.js\" --node-resolve --watch",
-    "size": "npm run build && size-limit"
+    "size": "npm run build && size-limit",
+    "lint": "eslint src/"
   },
   "devDependencies": {
     "@esm-bundle/chai": "^4.3.4-fix.0",
@@ -25,7 +30,8 @@
     "@web/rollup-plugin-html": "^1.10.1",
     "@web/test-runner": "^0.13.22",
     "@web/test-runner-commands": "^0.5.13",
-    "@web/test-runner-puppeteer": "^0.10.4",
+    "@web/test-runner-playwright": "^0.8.8",
+    "eslint": "^8.2.0",
     "rollup": "^2.60.0",
     "rollup-plugin-bundle-summary": "^1.0.3",
     "rollup-plugin-terser": "^7.0.2",

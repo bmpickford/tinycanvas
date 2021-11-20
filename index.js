@@ -2,7 +2,7 @@ import { Face } from './src/objects/face';
 import { GridItem } from './src/objects/gridItem';
 import { withArrowMovement } from './src/interaction/index';
 import { context, canvas } from './src/canvas';
-import puzzles from './src/puzzle';
+import puzzles from './src/puzzle/index';
 
 const face = withArrowMovement(new Face());
 const blockSize = 100;

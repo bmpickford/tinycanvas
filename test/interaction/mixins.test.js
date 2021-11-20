@@ -7,7 +7,7 @@ import { sendKeys } from '@web/test-runner-commands';
 describe('withArrowMovement', () => {
     class emptyClass {
         clone() { return new emptyClass(); }
-    };
+    }
     it('adds mixin functions to class', () => {
         const withArrowMovementClass = withArrowMovement(new emptyClass());
         expect(withArrowMovementClass.init).to.exist;
@@ -24,7 +24,7 @@ describe('withArrowMovement', () => {
             moveLeft = spy();
             moveUp = spy();
             moveDown = spy();
-            clone() { return new arrowSpyClass() };
+            clone() { return new arrowSpyClass() }
         }
         const mockClass = withArrowMovement(new arrowSpyClass());
         it('should move element when right arrow is clicked', async () => {           
@@ -54,7 +54,7 @@ describe('withArrowMovement', () => {
             moveLeft = spy();
             moveUp = spy();
             moveDown = spy();
-            clone() { return new wasdSpyClass() };
+            clone() { return new wasdSpyClass() }
         }
         const mockClass = withWASDMovement(new wasdSpyClass());
         it('should move element when d arrow is clicked', async () => {           

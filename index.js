@@ -1,4 +1,4 @@
-import { Face } from './src/sprites/face';
+import { Face } from './src/objects/face';
 import { withArrowMovement, withWASDMovement } from './src/interaction/index';
 import { context, canvas } from './src/canvas';
 

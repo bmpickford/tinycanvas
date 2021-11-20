@@ -1,28 +1,24 @@
 import { context } from '../canvas';
+import { GameObject } from './object';
 
 /**
  * @class Face
  * @param {Object} options
  */
-export class Face {
-    x = 100;
-    y = 100;
-    size = 75;
+export class Face extends GameObject {
+
     delta = 100;
 
     constructor(options) {
-        if (options) {
-            const { x, y, size, delta } = options;
-            if (x) this.x = x;
-            if (y) this.y = y;
-            if (size) this.size = size;
-            if (delta) this.delta = delta;
+        super(options);
+        if (options && options.delta) {
+            this.delta = options.delta;
         }
     }
 
     draw() {
         context.beginPath();
-        context.arc(this.x + (this.delta / 2), this.y + (this.delta / 2), this.size / 2, 0, Math.PI * 2);
+        context.arc(this.x + (this.delta / 2), this.y + (this.delta / 2), this.radius / 2, 0, Math.PI * 2);
         context.stroke();
     }
 
@@ -30,7 +26,7 @@ export class Face {
         return new Face({
             x: this.x,
             y: this.y,
-            size: this.size,
+            radius: this.radius,
             delta: this.delta
         });
     }

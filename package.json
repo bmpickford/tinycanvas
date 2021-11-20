@@ -31,6 +31,7 @@
     "@web/test-runner": "^0.13.22",
     "@web/test-runner-commands": "^0.5.13",
     "@web/test-runner-playwright": "^0.8.8",
+    "esbuild": "^0.13.14",
     "eslint": "^8.2.0",
     "rollup": "^2.60.0",
     "rollup-plugin-bundle-summary": "^1.0.3",

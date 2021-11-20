@@ -1,16 +1,17 @@
-export const ArrowMoveMixin = {
+
+export const wasdKeyListenerMixin = {
     onKeyDown(e) {
         switch (e.key) {
-            case "ArrowLeft":
+            case "a":
                 this.moveLeft();
                 break;
-            case "ArrowRight":
+            case "d":
                 this.moveRight();
                 break;
-            case "ArrowUp":
+            case "w":
                 this.moveUp();
                 break;
-            case "ArrowDown":
+            case "s":
                 this.moveDown();
                 break;
         }

@@ -1,9 +1,24 @@
 import { Face } from './src/objects/face';
-import { withArrowMovement, withWASDMovement } from './src/interaction/index';
+import { GridItem } from './src/objects/gridItem';
+import { withArrowMovement } from './src/interaction/index';
 import { context, canvas } from './src/canvas';
+import puzzles from './src/puzzle/index';
 
-const face = withArrowMovement(new Face({ x: 50, y: 50, delta: 100 }));
-const face2 = withWASDMovement(new Face({ x: 150, y: 150, delta: 100 }));
+const face = withArrowMovement(new Face());
+const blockSize = 100;
+const grid = [];
+
+function configurePuzzle(puzzle) {
+    for(let i = 0; i < puzzle.board.length; i++) {
+        for(let j = 0; j < puzzle.board[i].length; j++) {
+            grid.push(new GridItem({
+                x: j * blockSize,
+                y: i * blockSize,
+                type: puzzle.board[i][j]
+            }))
+        }
+    }
+}
 
 function clear() {
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -11,7 +26,9 @@ function clear() {
 
 function draw() {
     face.draw();
-    face2.draw();
+    for (let g of grid) {
+        g.draw();
+    }
 }
 
 function loop() {
@@ -20,5 +37,5 @@ function loop() {
     window.requestAnimationFrame(loop);
 }
 
+configurePuzzle(puzzles[0]);
 loop();
-

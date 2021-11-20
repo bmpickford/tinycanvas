@@ -7,27 +7,14 @@ import { GameObject } from './object';
  */
 export class Face extends GameObject {
 
-    delta = 100;
-
-    constructor(options) {
-        super(options);
-        if (options && options.delta) {
-            this.delta = options.delta;
-        }
-    }
-
     draw() {
+        const { x, y, delta, radius } = this.options;
         context.beginPath();
-        context.arc(this.x + (this.delta / 2), this.y + (this.delta / 2), this.radius / 2, 0, Math.PI * 2);
+        context.arc(x + (delta / 2), y + (delta / 2), radius / 2, 0, Math.PI * 2);
         context.stroke();
     }
 
     clone() {
-        return new Face({
-            x: this.x,
-            y: this.y,
-            radius: this.radius,
-            delta: this.delta
-        });
+        return new Face(this.options);
     }
 }

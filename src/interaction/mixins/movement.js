@@ -9,27 +9,27 @@ export const movementMixin = {
         document.removeEventListener('keydown', this.boundOnKeyDown);
     },
     moveLeft() {
-        if (this.x - this.delta < 0){ 
+        if (this.options.x - this.options.delta < 0){ 
             return;
         }
-        this.x -= this.delta;
+        this.options.x -= this.options.delta;
     },
     moveUp() {
-        if (this.y - this.delta < 0){ 
+        if (this.options.y - this.options.delta < 0){ 
             return;
         }
-        this.y -= this.delta;
+        this.options.y -= this.options.delta;
     },
     moveRight() {
-        if (this.x + this.delta >= canvas.width){ 
+        if (this.options.x + this.options.delta >= canvas.width){ 
             return;
         }
-        this.x += this.delta;
+        this.options.x += this.options.delta;
     },
     moveDown() {
-        if (this.y + this.delta >= canvas.width){ 
+        if (this.options.y + this.options.delta >= canvas.width){ 
             return;
         }
-        this.y += this.delta;
+        this.options.y += this.options.delta;
     },
 }

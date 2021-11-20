@@ -2,19 +2,26 @@ import { context } from "../canvas";
 import { GameObject } from "./object";
 
 export class GridItem extends GameObject {
-    type = 0;
-
-    constructor(options) {
-        super(options);
-        if (options && options.type) {
-            this.type = options.type;
+    color;
+    draw() {
+        const { type, x, y, width, height } = this.options;
+        if (this.color) {
+            const _originalFillStyle = context.fillStyle;
+            context.fillStyle = this.color;
+            context.fillRect(x, y, width, height);
+            context.fillStyle = _originalFillStyle;
+            return;
+        }
+        if (type === 0) {
+            context.strokeRect(x, y, width, height);
+        } else {
+            context.fillRect(x, y, width, height);
         }
     }
-    draw() {
-        if (this.type === 0) {
-            context.strokeRect(this.x, this.y, this.width, this.height);
-        } else {
-            context.fillRect(this.x, this.y, this.width, this.height);
-        }
+    clone() {
+        return new GridItem(this.options);
+    }
+    onClick() {
+        this.color = '#ff0000';
     }
 }

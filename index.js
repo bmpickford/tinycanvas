@@ -4,7 +4,7 @@ import { withArrowMovement } from './src/interaction/index';
 import { context, canvas } from './src/canvas';
 import puzzles from './src/puzzle/index';
 
-const face = withArrowMovement(new Face());
+let face;
 const blockSize = 100;
 const grid = [];
 
@@ -18,6 +18,8 @@ function configurePuzzle(puzzle) {
             }))
         }
     }
+    face = withArrowMovement(new Face({ x: puzzle.player[0] * blockSize, y: puzzle.player[1] * blockSize, radius: 75 }));
+
 }
 
 function clear() {

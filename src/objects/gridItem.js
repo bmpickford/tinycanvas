@@ -1,19 +1,13 @@
 import { context } from "../canvas";
+import { GameObject } from "./object";
 
-export class GridItem {
-    width = 100;
-    height = 100;
-    x = 0;
-    y = 0;
+export class GridItem extends GameObject {
     type = 0;
 
     constructor(options) {
-        if (options) {
-            const { x, y, size, type } = options;
-            if (x) this.x = x;
-            if (y) this.y = y;
-            if (size) this.size = size;
-            if (type) this.type = type;
+        super(options);
+        if (options && options.type) {
+            this.type = options.type;
         }
     }
     draw() {

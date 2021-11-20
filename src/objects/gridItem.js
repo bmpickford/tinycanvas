@@ -1,20 +1,25 @@
 import { context } from "../canvas";
 import { GameObject } from "./object";
+import { mix, OnClickMixin } from '../interaction/index';
 
-export class GridItem extends GameObject {
-    type = 0;
-
-    constructor(options) {
-        super(options);
-        if (options && options.type) {
-            this.type = options.type;
+export class GridItem extends mix(GameObject).with(OnClickMixin) {
+    name = "griditem"
+    draw() {
+        const { type, x, y, w, h } = this.options;
+        if (this.color) {
+            const _originalFillStyle = context.fillStyle;
+            context.fillStyle = this.color;
+            context.fillRect(x, y, w, h);
+            context.fillStyle = _originalFillStyle;
+            return;
+        }
+        if (type === 0) {
+            context.strokeRect(x, y, w, h);
+        } else {
+            context.fillRect(x, y, w, h);
         }
     }
-    draw() {
-        if (this.type === 0) {
-            context.strokeRect(this.x, this.y, this.width, this.height);
-        } else {
-            context.fillRect(this.x, this.y, this.width, this.height);
-        }
+    _onClick() {
+        this.color = '#ff0000';
     }
 }

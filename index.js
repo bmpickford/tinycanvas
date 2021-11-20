@@ -1,43 +1,46 @@
-import { Face } from './src/objects/face';
+import { MoveableFace } from './src/objects/face';
 import { GridItem } from './src/objects/gridItem';
-import { withArrowMovement } from './src/interaction/index';
-import { context, canvas } from './src/canvas';
 import puzzles from './src/puzzle/index';
+import { Game } from './src/game';
+import { canvas } from './src/canvas';
 
 let face;
-const blockSize = 100;
 const grid = [];
 
-function configurePuzzle(puzzle) {
+function configureGameObjects(puzzle) {
+    const blockWidth = canvas.width / puzzle.board.length;
+    const blockHeight = canvas.height / puzzle.board[0].length;
+    console.table({
+        'canvas': `${canvas.width}x${canvas.height}`,
+        'grid': `${puzzle.board.length}x${puzzle.board[0].length}`,
+        'block': `${blockWidth}x${blockHeight}`,
+    });
     for(let i = 0; i < puzzle.board.length; i++) {
         for(let j = 0; j < puzzle.board[i].length; j++) {
-            grid.push(new GridItem({
-                x: j * blockSize,
-                y: i * blockSize,
+            let options = {
+                x: i * blockWidth,
+                y: j * blockHeight,
+                w: blockWidth,
+                h: blockHeight,
                 type: puzzle.board[i][j]
-            }))
+            };
+            grid.push(new GridItem(options));
         }
     }
-    face = withArrowMovement(new Face({ x: puzzle.player[0] * blockSize, y: puzzle.player[1] * blockSize, radius: 75 }));
-
+    face = new MoveableFace({
+        x: puzzle.player[0] * blockWidth,
+        y: puzzle.player[1] * blockHeight,
+        radius: 0.75 * (Math.min(blockWidth, blockHeight)),
+        deltaX: blockWidth,
+        deltaY: blockHeight,
+    });
 }
+configureGameObjects(puzzles[0]);
 
-function clear() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-function draw() {
-    face.draw();
-    for (let g of grid) {
-        g.draw();
-    }
-}
-
-function loop() {
-    clear();
-    draw();
-    window.requestAnimationFrame(loop);
-}
-
-configurePuzzle(puzzles[0]);
-loop();
+new Game({
+    puzzles,
+    objects: [
+        ...grid,
+        face,
+    ]
+});

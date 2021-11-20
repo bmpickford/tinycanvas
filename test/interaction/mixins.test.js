@@ -1,82 +1,83 @@
 
 import { expect } from '@esm-bundle/chai';
-import { withArrowMovement, withWASDMovement } from "../../src/interaction";
+import { mix, WASDMovementMixin, ArrowMovementMixin } from "../../src/interaction";
 import { spy } from 'sinon';
 import { sendKeys } from '@web/test-runner-commands';
 
 describe('withArrowMovement', () => {
-    class emptyClass {
-        clone() { return new emptyClass(); }
-    }
+    class emptyClass { }
     it('adds mixin functions to class', () => {
-        const withArrowMovementClass = withArrowMovement(new emptyClass());
-        expect(withArrowMovementClass.init).to.exist;
-        expect(typeof withArrowMovementClass.init).to.be.equal('function');
+        const movingClass = mix(emptyClass).with(WASDMovementMixin);
+        const withArrowMovementClass = new movingClass();
         expect(typeof withArrowMovementClass.destroy).to.be.equal('function');
-        expect(typeof withArrowMovementClass.onKeyDown).to.be.equal('function');
+        expect(typeof withArrowMovementClass._onKeyDown).to.be.equal('function');
 
         withArrowMovementClass.destroy();
     });
 
     describe('arrow key inputs', () => {
         class arrowSpyClass {
-            moveRight = spy();
-            moveLeft = spy();
-            moveUp = spy();
-            moveDown = spy();
-            clone() { return new arrowSpyClass() }
+            _moveRight = spy();
+            _moveLeft = spy();
+            _moveUp = spy();
+            _moveDown = spy();
         }
-        const mockClass = withArrowMovement(new arrowSpyClass());
+        const mixed = mix(arrowSpyClass).with(ArrowMovementMixin);
+        const mockClass = new mixed();
         it('should move element when right arrow is clicked', async () => {           
             await sendKeys({ press: 'ArrowRight' });
-            expect(mockClass.moveRight.called).to.be.true;
+            expect(mockClass._moveRight.called).to.be.true;
         });
 
         it('should move element when left arrow is clicked', async () => {           
             await sendKeys({ press: 'ArrowLeft' });
-            expect(mockClass.moveLeft.called).to.be.true;
+            expect(mockClass._moveLeft.called).to.be.true;
         });
 
         it('should move element when up arrow is clicked', async () => {           
             await sendKeys({ press: 'ArrowUp' });
-            expect(mockClass.moveUp.called).to.be.true;
+            expect(mockClass._moveUp.called).to.be.true;
         });
 
         it('should move element when down arrow is clicked', async () => {           
             await sendKeys({ press: 'ArrowDown' });
-            expect(mockClass.moveDown.called).to.be.true;
+            expect(mockClass._moveDown.called).to.be.true;
         });
     });
 
     describe('wasd key inputs', () => {
         class wasdSpyClass {
-            moveRight = spy();
-            moveLeft = spy();
-            moveUp = spy();
-            moveDown = spy();
-            clone() { return new wasdSpyClass() }
+            _moveRight = spy();
+            _moveLeft = spy();
+            _moveUp = spy();
+            _moveDown = spy();
         }
-        const mockClass = withWASDMovement(new wasdSpyClass());
+        const mixed = mix(wasdSpyClass).with(WASDMovementMixin);
+        const mockClass = new mixed();
         it('should move element when d arrow is clicked', async () => {           
             await sendKeys({ press: 'd' });
-            expect(mockClass.moveRight.called).to.be.true;
+            expect(mockClass._moveRight.called).to.be.true;
         });
 
         it('should move element when a arrow is clicked', async () => {           
             await sendKeys({ press: 'a' });
-            expect(mockClass.moveLeft.called).to.be.true;
+            expect(mockClass._moveLeft.called).to.be.true;
         });
 
         it('should move element when w arrow is clicked', async () => {           
             await sendKeys({ press: 'w' });
-            expect(mockClass.moveUp.called).to.be.true;
+            expect(mockClass._moveUp.called).to.be.true;
         });
 
         it('should move element when s arrow is clicked', async () => {           
             await sendKeys({ press: 's' });
-            expect(mockClass.moveDown.called).to.be.true;
+            expect(mockClass._moveDown.called).to.be.true;
         });
-    });
-    
+    }); 
 });
-  
+
+describe('withMouseClick', () => {
+    it('should mixin click', () => {
+        // TODO
+    });
+});

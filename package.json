@@ -6,7 +6,7 @@
   "private": true,
   "type": "module",
   "files": [
-    "dist/"
+    "dist/*"
   ],
   "size-limit": [
     {
@@ -31,11 +31,12 @@
     "@web/rollup-plugin-html": "^1.10.1",
     "@web/test-runner": "^0.13.22",
     "@web/test-runner-commands": "^0.5.13",
+    "@web/test-runner-junit-reporter": "^0.4.9",
     "@web/test-runner-playwright": "^0.8.8",
-    "eslint": "^8.2.0",
+    "eslint": "^8.3.0",
     "eslint-plugin-mocha": "^9.0.0",
     "husky": "^7.0.4",
-    "rollup": "^2.60.0",
+    "rollup": "^2.60.1",
     "rollup-plugin-bundle-summary": "^1.0.3",
     "rollup-plugin-terser": "^7.0.2",
     "sinon": "^12.0.1",

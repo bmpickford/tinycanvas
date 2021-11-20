@@ -1,23 +1,19 @@
-import { arrowKeyListenerMixin } from "./mixins/arrowKeyListener";
-import { wasdKeyListenerMixin } from "./mixins/wasdKeyListener";
-import { movementMixin } from "./mixins/movement";
-
-export const withArrowMovement = (obj) => {
-    const _obj = withMixin(arrowKeyListenerMixin, obj);
-    _obj.init();
-    return _obj;
-};
-
-export const withWASDMovement = (obj) => {
-    const _obj = withMixin(wasdKeyListenerMixin, obj);
-    _obj.init();
-    return _obj;
-};
-
-const withMixin = (mixin, obj) => {
-    const _o = obj.clone();
-    Object.assign(_o.__proto__ || {}, mixin);
-    Object.assign(_o.__proto__, movementMixin);
-
-    return _o;
-}
+/**
+ * @param {*} superclass this is the class you want to mix in to
+ * @returns {*} the class with the mixin
+ * @example const classWithListener = mix(MyClass).with(myListenerMixin); const item = new classWithListener();
+ */
+ export const mix = (superclass) => new MixinBuilder(superclass);
+ class MixinBuilder {
+   constructor(superclass) {
+     this.superclass = superclass;
+   }
+ 
+   with(...mixins) { 
+     const _withMixins = mixins.reduce((c, mixin) => mixin(c), this.superclass);
+     return _withMixins;
+   }
+ }
+ 
+ export { WASDMovementMixin, ArrowMovementMixin } from './mixins/movement';
+ export { OnClickMixin } from './mixins/mouse';

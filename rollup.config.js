@@ -7,7 +7,13 @@ export default {
   output: { dir: 'dist' },
   plugins: [
     html({ minify: true }),
-    terser(),
+    terser({
+      mangle: {
+        properties: {
+          regex: /^_/,
+        },
+      },
+    }),
     summary()
   ],
 };

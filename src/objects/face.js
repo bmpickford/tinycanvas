@@ -5,10 +5,10 @@ import { context } from '../canvas';
  * @param {Object} options
  */
 export class Face {
-    x = 0;
-    y = 0;
+    x = 100;
+    y = 100;
     size = 75;
-    delta = 20;
+    delta = 100;
 
     constructor(options) {
         if (options) {
@@ -18,26 +18,11 @@ export class Face {
             if (size) this.size = size;
             if (delta) this.delta = delta;
         }
-        
-        this.draw();
     }
 
     draw() {
         context.beginPath();
-        // Face outline
-        context.arc(this.x + this.size, this.y + this.size, 50, 0, Math.PI * 2, true);
-        
-        // Mouth (clockwise)
-        context.moveTo(this.x + 110, this.y + this.size);
-        context.arc(this.x + this.size, this.y + this.size, 35, 0, Math.PI, false);  
-        
-        // Left eye
-        context.moveTo(this.x + 65, this.y + 65);
-        context.arc(this.x + 60, this.y + 65, 5, 0, Math.PI * 2, true);
-
-        // Right eye
-        context.moveTo(this.x + 95, this.y + 65);
-        context.arc(this.x + 90, this.y + 65, 5, 0, Math.PI * 2, true); 
+        context.arc(this.x + (this.delta / 2), this.y + (this.delta / 2), this.size / 2, 0, Math.PI * 2);
         context.stroke();
     }
 

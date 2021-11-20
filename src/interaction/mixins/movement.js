@@ -21,13 +21,13 @@ export const movementMixin = {
         this.y -= this.delta;
     },
     moveRight() {
-        if (this.x + (this.size * 2) + this.delta > canvas.width){ 
+        if (this.x + this.delta >= canvas.width){ 
             return;
         }
         this.x += this.delta;
     },
     moveDown() {
-        if (this.y + (this.size * 2) + this.delta > canvas.width){ 
+        if (this.y + this.delta >= canvas.width){ 
             return;
         }
         this.y += this.delta;

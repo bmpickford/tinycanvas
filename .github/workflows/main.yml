@@ -12,10 +12,20 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14'
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: setup
         run: npx playwright install-deps && npx playwright install-deps chromium && npm install
       - name: build
         run: npm run build
+      - name: lint
+        run: npm run lint
+      - name: size
+        run: npm run size
       - name: test
         run: npm run test
   

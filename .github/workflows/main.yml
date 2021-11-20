@@ -19,7 +19,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - name: setup
-        run: npx playwright install-deps && npx playwright install-deps chromium && npm install
+        run: npx playwright install-deps chromium && npm install
       - name: build
         run: npm run build
       - name: lint

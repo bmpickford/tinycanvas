@@ -5,7 +5,6 @@ on: [ push ]
 jobs:
   ci:
     runs-on: ubuntu-latest
-    container: lironavon/docker-puppeteer-container:14.16.0
     env:
       CI: true
     steps:

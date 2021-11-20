@@ -11,9 +11,9 @@
 
 ## Tech
  * [web-dev-server](https://modern-web.dev/docs/dev-server/overview/) as a dev server.
- * [web-test-runner](https://modern-web.dev/docs/test-runner/overview/) as a test runner.
+ * [web-test-runner](https://modern-web.dev/docs/test-runner/overview/) as a testing configuration helper.
     * [playwright](https://modern-web.dev/docs/test-runner/browser-launchers/playwright/) as the browser launcher
-    * [mocha](https://mochajs.org/) as the test runner
+    * [mocha](https://mochajs.org/) as the test runner and testing syntax.
  * github actions for CI
  * [size-limit](https://github.com/ai/size-limit) for tracking bundle size
  * [rollup](https://rollupjs.org/guide/en/) for building and minification

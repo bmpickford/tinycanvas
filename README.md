@@ -11,7 +11,7 @@
 
 ## Tech
  * [web-dev-server](https://modern-web.dev/docs/dev-server/overview/) as a dev server.
- * [web-test-runner](hhttps://modern-web.dev/docs/test-runner/overview/) as a test runner.
+ * [web-test-runner](https://modern-web.dev/docs/test-runner/overview/) as a test runner.
     * [playwright](https://modern-web.dev/docs/test-runner/browser-launchers/playwright/) as the browser launcher
     * [mocha](https://mochajs.org/) as the test runner
  * github actions for CI

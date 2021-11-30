@@ -15,12 +15,18 @@ describe('withArrowMovement', () => {
         withArrowMovementClass.destroy();
     });
 
-    describe.only('arrow key inputs', () => {
+    describe('arrow key inputs', () => {
         class arrowSpyClass {
             _moveRight = spy();
             _moveLeft = spy();
             _moveUp = spy();
             _moveDown = spy();
+            o = {
+                x: 0,
+                y: 0,
+                deltaX: 0,
+                deltaY: 0,
+            }
         }
         const mixed = mix(arrowSpyClass).with(ArrowMovementMixin);
         const mockClass = new mixed();
@@ -51,6 +57,12 @@ describe('withArrowMovement', () => {
             _moveLeft = spy();
             _moveUp = spy();
             _moveDown = spy();
+            o = {
+                x: 0,
+                y: 0,
+                deltaX: 0,
+                deltaY: 0,
+            }
         }
         const mixed = mix(wasdSpyClass).with(WASDMovementMixin);
         const mockClass = new mixed();

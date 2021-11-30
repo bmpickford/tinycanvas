@@ -14,7 +14,7 @@ class Circle extends GameObject {
     name = "circle";
 
     constructor(game, o) {
-        super(game, { ...o, h: o.radius, w: o.radius });
+        super(game, { ...o, h: o.r, w: o.r });
     }
     /**
      * Game object will be fully initialised here
@@ -75,7 +75,7 @@ export class MoveableCircle extends mix(Circle).with(ArrowMovementMixin, EnterKe
         item.color = '#ff00ff';
     }
     _clickFeedback() {
-        this.o.radius = this.o.radius + 5;
-        setTimeout(() => this.o.radius = this.o.radius - 5, 100);
+        this.o.r = this.o.r + 5;
+        setTimeout(() => this.o.r = this.o.r - 5, 100);
     }
 }

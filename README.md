@@ -6,11 +6,11 @@ Template for jsk13 games, or any canvas application designed to be small
  - ✅ Collision detection
  - ✅ Global game and canvas access
  - ✅ Out of the box build tooling, CI and testing. See below for list of build tools
- - ❌ Easy object creation API
- - ❌ Levels
- - ❌ Spritesheet
- - ❌ Animations
- - ❌ Text
+ - ⭕ Easy object creation API
+ - ⭕ Levels
+ - ⭕ Spritesheet
+ - ⭕ Animations
+ - ⭕ Text
 
 ## Running
 `npm run start`

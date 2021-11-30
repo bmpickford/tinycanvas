@@ -1,8 +1,10 @@
 ## Game Starter
-![](https://img.badgesize.io/https:/www.game.benpickford.me/index.zip)
+![Size](https://img.badgesize.io/https:/www.game.benpickford.me/index.zip)
 ![CI](https://github.com/bmpickford/canvas-little-helper/actions/workflows/main.yml/badge.svg)
 
 Template for jsk13 games, or any canvas application designed to be small
+
+## [Demo](https://www.game.benpickford.me/)
 
 #### What's Included
  - &#10004; WASD / Arrow key / Mouse click listener

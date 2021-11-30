@@ -1,7 +1,7 @@
 {
   "name": "game",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "private": true,
   "type": "module",
@@ -16,12 +16,13 @@
   ],
   "scripts": {
     "start": "web-dev-server --node-resolve --open --watch --esbuild-target auto",
-    "build": "rollup -c rollup.config.js",
+    "build": "rollup -c rollup.config.js && npm run zip",
     "test": "web-test-runner test/**/*.test.js --node-resolve",
     "test:watch": "web-test-runner \"test/**/*.test.js\" --node-resolve --watch",
     "size": "npm run build && size-limit",
     "lint": "eslint src/",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "zip": "zip dist/index.zip dist/* -9dv"
   },
   "devDependencies": {
     "@esm-bundle/chai": "^4.3.4-fix.0",

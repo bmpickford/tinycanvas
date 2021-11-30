@@ -1,4 +1,7 @@
 ## Game Starter
+![](https://img.badgesize.io/https:/www.game.benpickford.me/index.js)
+![CI](https://github.com/bmpickford/canvas-little-helper/actions/workflows/main.yml/badge.svg)
+
 Template for jsk13 games, or any canvas application designed to be small
 
 #### What's Included

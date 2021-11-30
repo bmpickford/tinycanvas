@@ -2,15 +2,15 @@
 Template for jsk13 games, or any canvas application designed to be small
 
 #### What's Included
- - ✅ WASD / Arrow key / Mouse click listener
- - ✅ Collision detection
- - ✅ Global game and canvas access
- - ✅ Out of the box build tooling, CI and testing. See below for list of build tools
- - ⭕ Easy object creation API
- - ⭕ Levels
- - ⭕ Spritesheet
- - ⭕ Animations
- - ⭕ Text
+ - &#10004; WASD / Arrow key / Mouse click listener
+ - &#10004; Collision detection
+ - &#10004; Global game and canvas access
+ - &#10004; Out of the box build tooling, CI and testing. See below for list of build tools
+ - &#10060; Easy object creation API
+ - &#10060; Levels
+ - &#10060; Spritesheet
+ - &#10060; Animations
+ - &#10060; Text
 
 ## Running
 `npm run start`
@@ -21,7 +21,7 @@ Template for jsk13 games, or any canvas application designed to be small
 ## Testing
 `npm run test`
 
-## Tech
+## Tooling
  * [web-dev-server](https://modern-web.dev/docs/dev-server/overview/) as a dev server.
  * [web-test-runner](https://modern-web.dev/docs/test-runner/overview/) as a testing configuration helper.
     * [playwright](https://modern-web.dev/docs/test-runner/browser-launchers/playwright/) as the browser launcher

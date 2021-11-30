@@ -1,14 +1,25 @@
 ## Game Starter
-Template for jsk13 games, or any application designed to be small
+Template for jsk13 games, or any canvas application designed to be small
+
+#### What's Included
+ - ✅ WASD / Arrow key / Mouse click listener
+ - ✅ Collision detection
+ - ✅ Global game and canvas access
+ - ✅ Out of the box build tooling, CI and testing. See below for list of build tools
+ - ❌ Easy object creation API
+ - ❌ Levels
+ - ❌ Spritesheet
+ - ❌ Animations
+ - ❌ Text
 
 ## Running
-`yarn start`
+`npm run start`
 
 ## Building
-`yarn build`
+`npm run build`
 
 ## Testing
-`yarn test`
+`npm run test`
 
 ## Tech
  * [web-dev-server](https://modern-web.dev/docs/dev-server/overview/) as a dev server.

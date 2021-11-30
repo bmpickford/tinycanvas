@@ -12,7 +12,7 @@ export const OnClickMixin = (superclass) => class extends superclass {
         document.removeEventListener('click', this.boundMouseClick);
     }
     _onMouseClick(e) {
-        const { w, h, x, y } = this.options;
+        const { w, h, x, y } = this.o;
         if (w && h) {
             if (
                 (e.clientX > x && e.clientX < x + w) &&

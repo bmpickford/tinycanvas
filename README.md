@@ -1,4 +1,5 @@
-## Game TBD
+## Game Starter
+Template for jsk13 games, or any application designed to be small
 
 ## Running
 `yarn start`

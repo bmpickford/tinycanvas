@@ -30,33 +30,33 @@ class Face extends GameObject {
 export class MoveableFace extends mix(Face).with(ArrowMovementMixin) {
     _moveLeft() {
         const cItems = this._getCollisionItems();
-        if (this.o.x - this.o.deltaX < 0 || cItems.some((c) => checkCollision(c.options, { ...this.o, x: this.o.x - this.o.deltaX }))){ 
+        if (this.o.x - this.o.deltaX < 0 || cItems.some((c) => checkCollision(c.o, { ...this.o, x: this.o.x - this.o.deltaX }))){ 
             return;
         }
         this.o.x -= this.o.deltaX;
     }
     _moveUp() {
         const cItems = this._getCollisionItems();
-        if (this.o.y - this.o.deltaY < 0 || cItems.some((c) => checkCollision(c.options, { ...this.o, y: this.o.y - this.o.deltaY }))){ 
+        if (this.o.y - this.o.deltaY < 0 || cItems.some((c) => checkCollision(c.o, { ...this.o, y: this.o.y - this.o.deltaY }))){ 
             return;
         }
         this.o.y -= this.o.deltaY;
     }
     _moveRight() {
         const cItems = this._getCollisionItems();
-        if (this.o.x + this.o.deltaX >= canvas.width || cItems.some((c) => checkCollision(c.options, { ...this.o, x: this.o.x + this.o.deltaX }))){ 
+        if (this.o.x + this.o.deltaX >= canvas.width || cItems.some((c) => checkCollision(c.o, { ...this.o, x: this.o.x + this.o.deltaX }))){ 
             return;
         }
         this.o.x += this.o.deltaX;
     }
     _moveDown() {
         const cItems = this._getCollisionItems();
-        if (this.o.y + this.o.deltaY >= canvas.width || cItems.some((c) => checkCollision(c.options, { ...this.o, y: this.o.y + this.o.deltaY }))){ 
+        if (this.o.y + this.o.deltaY >= canvas.width || cItems.some((c) => checkCollision(c.o, { ...this.o, y: this.o.y + this.o.deltaY }))){ 
             return;
         }
         this.o.y += this.o.deltaY;
     }
     _getCollisionItems() {
-        return this.game.objects.filter((o) => o.name && o.name === "griditem" && o.options.type === 1);
+        return this.game.objects.filter((ob) => ob.name && ob.name === "griditem" && ob.o.type === 1);
     }
 }

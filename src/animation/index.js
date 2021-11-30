@@ -3,7 +3,7 @@
  * @param {*} o Object to animate
  * @param {*} config Config for animation. Should include any of x, y, h, w, r in an object. Can also specify frames and start frame
  */
-export function animateObject(o, config, ease) {
+export function animate(o, config, ease) {
     const _config = {...config};
     if(!_config.frames) _config.frames = 100;
     if(!_config.frame) _config.frame = 0;
@@ -15,42 +15,56 @@ export function animateObject(o, config, ease) {
 
     let fn;
     switch (ease) {
-        case 'easeInOut':
+        case 'exp':
             fn = expEaseInOut;
+            break;
+        case 'quint':
+            fn = quinticEase;
+            break;
+        case 'quad':
+            fn = quadraticEase;
+            break;
+        case 'sine':
+            fn = sineEaseInOut;
             break;
         default:
             fn = linear;
             break;
     }
-    animate(o, _config, fn);
+    animateWithFunction(o, _config, fn);
 }
 
-function animate(o, config, fn) {
+function animateWithFunction(o, config, fn) {
     if (config.frame >= config.frames) return;
     config.frame = config.frame + 1;
     const progress = config.frame;
     const steps = config.frames;
-    if (config.x) {
+    if (config.x !== undefined) {
         const xDistance = config.x - config.xFrom;
         o.o.x = fn(progress, config.xFrom, xDistance, steps);
     }
-    if (config.y) {
+    if (config.y !== undefined) {
         const yDistance = config.y - config.yFrom;
         o.o.y = fn(progress, config.yFrom, yDistance, steps);
     }
-    if (config.w) {
+    if (config.w !== undefined) {
         const wDistance = config.w - config.wFrom;
         o.o.w = fn(progress, config.wFrom, wDistance, steps);
     }
-    if (config.h) {
+    if (config.h !== undefined) {
         const hDistance = config.h - config.hFrom;
         o.o.h = fn(progress, config.hFrom, hDistance, steps);
     }
-    if (config.r) {
+    if (config.r !== undefined) {
         const rDistance = config.r - config.rFrom;
         o.o.r = fn(progress, config.rFrom, rDistance, steps);
     }
-    window.requestAnimationFrame(animate.bind(null, o, config, fn));
+    window.requestAnimationFrame(animateWithFunction.bind(null, o, config, fn));
+}
+
+function linear(currentProgress, start, distance, steps) {
+    currentProgress--;
+    return distance / steps * currentProgress + start;
 }
 
 function expEaseInOut(currentProgress, start, distance, steps) {
@@ -60,7 +74,27 @@ function expEaseInOut(currentProgress, start, distance, steps) {
     return distance / 2 * ( -Math.pow( 2, -10 * currentProgress) + 2 ) + start;
 }
 
-function linear(currentProgress, start, distance, steps) {
-    currentProgress--;
-    return distance / steps * currentProgress + start;
+
+function quinticEase(currentProgress, start, distance, steps) {
+    currentProgress /= steps/2;
+    if (currentProgress < 1) {
+      return (distance/2)*(Math.pow(currentProgress, 5)) + start;
+    }
+    currentProgress -= 2;
+    return distance/2*(Math.pow(currentProgress, 5) + 2) + start;
 }
+
+
+function quadraticEase(currentProgress, start, distance, steps) {
+    currentProgress /= steps/2;
+    if (currentProgress <= 1) {
+      return (distance/2)*currentProgress*currentProgress + start;
+    }
+    currentProgress--;
+    return -1*(distance/2) * (currentProgress*(currentProgress-2) - 1) + start;
+}
+  
+function sineEaseInOut(currentProgress, start, distance, steps) {
+    return -distance/2 * (Math.cos(Math.PI*currentProgress/steps) - 1) + start;
+}
+  

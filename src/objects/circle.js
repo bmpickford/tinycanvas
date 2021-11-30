@@ -4,7 +4,7 @@ import { canvas, context } from '../canvas';
 import { GameObject } from './object';
 import { mix, ArrowMovementMixin, EnterKeyMixin } from '../interaction/index';
 import { checkCollision } from '../utils/collision';
-import { animateObject } from '../animation/index';
+import { animate } from '../animation/index';
 
 /**
  * @class Circle
@@ -32,13 +32,13 @@ class Circle extends GameObject {
     }
     destroy() {
         const { deltaX, deltaY } = this.o;
-        animateObject(this, {
+        animate(this, {
             frame: 0,
-            frames: 200,
+            frames: 180,
             r: canvas.height,
             x: canvas.width / 2 - (deltaX / 2),
             y: canvas.height / 2 - (deltaY / 2),
-        }, 'easeInOut');
+        }, 'exp');
     }
 }
 

@@ -4,14 +4,21 @@ export class Game {
     objects;
     puzzles;
     currentPuzzle;
+    _puzzleIndex = 0;
     constructor(o) {
-        if (o.objects) this.objects = o.objects;
-        if (o.puzzles) {
-            this.puzzles = o.puzzles;
-            this.currentPuzzle = o.puzzles[0];
-        }
-        this.addGameToObjects();
+        this.initLevel = o.initLevel; 
+        this.puzzles = o.puzzles;
+        this.currentPuzzle = o.puzzles[0];
+        this.init();
         this.loop();
+
+        // Shortcut to next level
+        document.addEventListener('keydown', (e) => e.key === 'n' && this.nextLevel());
+    }
+    init() {
+        this.objects = this.initLevel(this);
+        this.objects.forEach((o) => o && o.init && o.init());
+        this._printSummary();
     }
 
     clear() {
@@ -23,15 +30,31 @@ export class Game {
             o.draw();
         }
     }
-    
     loop() {
         this.clear();
         this.draw();
         window.requestAnimationFrame(this.loop.bind(this));
     }
-    addGameToObjects() {
-        for (let o of this.objects) {
-            o.game = this;
+    nextLevel() {
+        this._puzzleIndex++;
+        this.currentPuzzle = this.puzzles[this._puzzleIndex];
+        if (!this.currentPuzzle) {
+            this.gameOver();
+            return;
         }
+        this.init();
+    }
+    gameOver() {
+        for (let o of this.objects) {
+            console.log(o.name);
+            o.destroy();
+        }
+    }
+    _printSummary() {
+        console.table({
+            'canvas': `${canvas.width}x${canvas.height}`,
+            'grid': `${this.currentPuzzle.board.length}x${this.currentPuzzle.board[0].length}`,
+            'block': `${canvas.width / this.currentPuzzle.board.length}x${canvas.height / this.currentPuzzle.board[0].length}`,
+        });
     }
 }

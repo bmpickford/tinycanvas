@@ -7,7 +7,7 @@ Template for jsk13 games, or any canvas application designed to be small
 ## [Demo](https://www.game.benpickford.me/)
 
 #### What's Included
- - &#10004; WASD / Arrow key / Mouse click listener
+ - &#10004; WASD / Arrow key / Mouse click / Enter key object listener
  - &#10004; Collision detection
  - &#10004; Global game and canvas access
  - &#10004; Out of the box build tooling, CI and testing. See below for list of build tools

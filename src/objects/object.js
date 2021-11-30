@@ -1,14 +1,13 @@
 export class GameObject {
     o = {
-        h: 100,
-        w: 100,
-        deltaX: 100,
-        deltaY: 100,
+        h: 0,
+        w: 0,
         x: 0,
         y: 0,
     };
 
-    constructor(o) {
+    constructor(game, o) {
+        this.game = game;
         this.o = {...this.o, ...o};
     }
 }

@@ -17,3 +17,4 @@
  
  export { WASDMovementMixin, ArrowMovementMixin } from './mixins/movement';
  export { OnClickMixin } from './mixins/mouse';
+ export { EnterKeyMixin } from './mixins/keyboard';

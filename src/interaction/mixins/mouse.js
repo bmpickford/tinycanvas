@@ -5,11 +5,12 @@
 export const OnClickMixin = (superclass) => class extends superclass {
     constructor(...args) {
         super(...args);
-        this.boundMouseClick = this._onMouseClick.bind(this);
-        document.addEventListener('click', this.boundMouseClick);
+        this._boundMouseClick = this._onMouseClick.bind(this);
+        document.addEventListener('click', this._boundMouseClick);
     }
     destroy() {
-        document.removeEventListener('click', this.boundMouseClick);
+        super.destroy();
+        document.removeEventListener('click', this._boundMouseClick);
     }
     _onMouseClick(e) {
         const { w, h, x, y } = this.o;

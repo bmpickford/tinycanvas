@@ -15,7 +15,7 @@ describe('withArrowMovement', () => {
         withArrowMovementClass.destroy();
     });
 
-    describe('arrow key inputs', () => {
+    describe.only('arrow key inputs', () => {
         class arrowSpyClass {
             _moveRight = spy();
             _moveLeft = spy();

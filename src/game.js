@@ -38,15 +38,13 @@ export class Game {
     nextLevel() {
         this._puzzleIndex++;
         this.currentPuzzle = this.puzzles[this._puzzleIndex];
-        if (!this.currentPuzzle) {
-            this.gameOver();
-            return;
+        this.destroyObjects();
+        if (this.currentPuzzle) {
+            this.init();
         }
-        this.init();
     }
-    gameOver() {
+    destroyObjects() {
         for (let o of this.objects) {
-            console.log(o.name);
             o.destroy();
         }
     }

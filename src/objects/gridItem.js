@@ -1,6 +1,7 @@
 import { context } from "../canvas";
 import { GameObject } from "./object";
 import { mix, OnClickMixin } from '../interaction/index';
+import { animate } from '../animation/index';
 
 export class GridItem extends mix(GameObject).with(OnClickMixin) {
     name = "griditem"
@@ -20,17 +21,12 @@ export class GridItem extends mix(GameObject).with(OnClickMixin) {
         }
     }
     destroy() {
-        const m = Math.max(this.o.h, this.o.w);
-        if (this.o.w <= 0 && this.o.h <= 0) return;
-        if (this.o.w > 0) {
-            this.o.w = this.o.w - (2 * (this.o.w / m));
-            this.o.x += (this.o.w / m);
-        }
-        if (this.o.h > 0) {
-            this.o.h = this.o.h - (2 * (this.o.h / m));
-            this.o.y += (this.o.h / m);
-        }
-        window.requestAnimationFrame(this.destroy.bind(this))
+        animate(this, {
+            h: 0,
+            w: 0,
+            x: 0,
+            frames: 50,
+        }, 'sine');
     }
     _onClick() {
         this.color = '#ff0000';

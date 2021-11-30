@@ -4,11 +4,11 @@ export class Game {
     objects;
     puzzles;
     currentPuzzle;
-    constructor(options) {
-        if (options.objects) this.objects = options.objects;
-        if (options.puzzles) {
-            this.puzzles = options.puzzles;
-            this.currentPuzzle = options.puzzles[0];
+    constructor(o) {
+        if (o.objects) this.objects = o.objects;
+        if (o.puzzles) {
+            this.puzzles = o.puzzles;
+            this.currentPuzzle = o.puzzles[0];
         }
         this.addGameToObjects();
         this.loop();

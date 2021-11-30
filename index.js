@@ -17,14 +17,13 @@ function configureGameObjects(puzzle) {
     });
     for(let i = 0; i < puzzle.board.length; i++) {
         for(let j = 0; j < puzzle.board[i].length; j++) {
-            let options = {
+            grid.push(new GridItem({
                 x: i * blockWidth,
                 y: j * blockHeight,
                 w: blockWidth,
                 h: blockHeight,
                 type: puzzle.board[i][j]
-            };
-            grid.push(new GridItem(options));
+            }));
         }
     }
     face = new MoveableFace({

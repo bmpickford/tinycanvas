@@ -5,7 +5,7 @@ import { mix, OnClickMixin } from '../interaction/index';
 export class GridItem extends mix(GameObject).with(OnClickMixin) {
     name = "griditem"
     draw() {
-        const { type, x, y, w, h } = this.options;
+        const { type, x, y, w, h } = this.o;
         if (this.color) {
             const _originalFillStyle = context.fillStyle;
             context.fillStyle = this.color;

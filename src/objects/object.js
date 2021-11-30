@@ -1,5 +1,5 @@
 export class GameObject {
-    options = {
+    o = {
         h: 100,
         w: 100,
         deltaX: 100,
@@ -8,7 +8,7 @@ export class GameObject {
         y: 0,
     };
 
-    constructor(options) {
-        this.options = {...this.options, ...options};
+    constructor(o) {
+        this.o = {...this.o, ...o};
     }
 }

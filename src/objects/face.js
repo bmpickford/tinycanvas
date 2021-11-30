@@ -7,17 +7,17 @@ import { checkCollision } from '../utils/collision';
 
 /**
  * @class Face
- * @param {Object} options
+ * @param {Object} o
  */
 class Face extends GameObject {
     name = "face";
 
-    constructor(options) {
-        super({ ...options, h: options.radius, w: options.radius });
+    constructor(o) {
+        super({ ...o, h: o.radius, w: o.radius });
     }
 
     draw() {
-        const { x, y, deltaX, deltaY, radius } = this.options;
+        const { x, y, deltaX, deltaY, radius } = this.o;
         context.beginPath();
         context.arc(x + (deltaX / 2), y + (deltaY / 2), radius / 2, 0, Math.PI * 2);
         context.stroke();
@@ -30,31 +30,31 @@ class Face extends GameObject {
 export class MoveableFace extends mix(Face).with(ArrowMovementMixin) {
     _moveLeft() {
         const cItems = this._getCollisionItems();
-        if (this.options.x - this.options.deltaX < 0 || cItems.some((c) => checkCollision(c.options, { ...this.options, x: this.options.x - this.options.deltaX }))){ 
+        if (this.o.x - this.o.deltaX < 0 || cItems.some((c) => checkCollision(c.options, { ...this.o, x: this.o.x - this.o.deltaX }))){ 
             return;
         }
-        this.options.x -= this.options.deltaX;
+        this.o.x -= this.o.deltaX;
     }
     _moveUp() {
         const cItems = this._getCollisionItems();
-        if (this.options.y - this.options.deltaY < 0 || cItems.some((c) => checkCollision(c.options, { ...this.options, y: this.options.y - this.options.deltaY }))){ 
+        if (this.o.y - this.o.deltaY < 0 || cItems.some((c) => checkCollision(c.options, { ...this.o, y: this.o.y - this.o.deltaY }))){ 
             return;
         }
-        this.options.y -= this.options.deltaY;
+        this.o.y -= this.o.deltaY;
     }
     _moveRight() {
         const cItems = this._getCollisionItems();
-        if (this.options.x + this.options.deltaX >= canvas.width || cItems.some((c) => checkCollision(c.options, { ...this.options, x: this.options.x + this.options.deltaX }))){ 
+        if (this.o.x + this.o.deltaX >= canvas.width || cItems.some((c) => checkCollision(c.options, { ...this.o, x: this.o.x + this.o.deltaX }))){ 
             return;
         }
-        this.options.x += this.options.deltaX;
+        this.o.x += this.o.deltaX;
     }
     _moveDown() {
         const cItems = this._getCollisionItems();
-        if (this.options.y + this.options.deltaY >= canvas.width || cItems.some((c) => checkCollision(c.options, { ...this.options, y: this.options.y + this.options.deltaY }))){ 
+        if (this.o.y + this.o.deltaY >= canvas.width || cItems.some((c) => checkCollision(c.options, { ...this.o, y: this.o.y + this.o.deltaY }))){ 
             return;
         }
-        this.options.y += this.options.deltaY;
+        this.o.y += this.o.deltaY;
     }
     _getCollisionItems() {
         return this.game.objects.filter((o) => o.name && o.name === "griditem" && o.options.type === 1);

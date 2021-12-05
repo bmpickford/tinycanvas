@@ -1,8 +1,8 @@
-import { MoveableCircle } from './src/objects/circle';
-import { GridItem } from './src/objects/gridItem';
-import puzzles from './src/puzzle/index';
-import { Game } from './src/game';
-import { canvas } from './src/canvas';
+import { MoveableCircle } from './objects/circle';
+import { GridItem } from './objects/gridItem';
+import puzzles from './puzzle/index';
+import { Game } from '../lib/game';
+import { canvas } from '../lib/canvas';
 
 function configureGrid(game) {
     const grid = [];

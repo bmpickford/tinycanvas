@@ -1,9 +1,7 @@
-import { context } from "../canvas";
-import { GameObject } from "./object";
-import { mix, OnClickMixin } from '../interaction/index';
-import { animate } from '../animation/index';
+import { context } from "../../lib/canvas";
+import Lib from '../../lib/index';
 
-export class GridItem extends mix(GameObject).with(OnClickMixin) {
+export class GridItem extends Lib.mix(Lib.GameObject).with(Lib.OnClickMixin) {
     name = "griditem"
     draw() {
         const { type, x, y, w, h } = this.o;
@@ -21,7 +19,7 @@ export class GridItem extends mix(GameObject).with(OnClickMixin) {
         }
     }
     destroy() {
-        animate(this, {
+        Lib.animate(this, {
             h: 0,
             w: 0,
             x: 0,

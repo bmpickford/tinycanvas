@@ -1,16 +1,13 @@
 'use strict';
 
-import { canvas, context } from '../canvas';
-import { GameObject } from './object';
-import { mix, ArrowMovementMixin, EnterKeyMixin } from '../interaction/index';
-import { checkCollision } from '../utils/collision';
-import { animate } from '../animation/index';
+import { canvas, context } from '../../lib/canvas';
+import Lib from '../../lib/index';
 
 /**
  * @class Circle
  * @param {Object} o
  */
-class Circle extends GameObject {
+class Circle extends Lib.GameObject {
     name = "circle";
 
     constructor(game, o) {
@@ -32,7 +29,7 @@ class Circle extends GameObject {
     }
     destroy() {
         const { deltaX, deltaY } = this.o;
-        animate(this, {
+        Lib.animate(this, {
             frame: 0,
             frames: 180,
             r: canvas.height,
@@ -45,24 +42,24 @@ class Circle extends GameObject {
 /**
  * Export with ArrowKeyListener
  */
-export class MoveableCircle extends mix(Circle).with(ArrowMovementMixin, EnterKeyMixin) {
+export class MoveableCircle extends Lib.mix(Circle).with(Lib.ArrowMovementMixin, Lib.EnterKeyMixin) {
     _moveLeft() {
-        const item = this.citems.find((c) => checkCollision(c.o, { ...this.o, x: this.o.x - this.o.deltaX }));
+        const item = this.citems.find((c) => Lib.checkCollision(c.o, { ...this.o, x: this.o.x - this.o.deltaX }));
         if (item) this._collide(item);
         this.o.x -= this.o.deltaX;
     }
     _moveUp() {
-        const item = this.citems.find((c) => checkCollision(c.o, { ...this.o, y: this.o.y - this.o.deltaY }));
+        const item = this.citems.find((c) => Lib.checkCollision(c.o, { ...this.o, y: this.o.y - this.o.deltaY }));
         if (item) this._collide(item);
         this.o.y -= this.o.deltaY;
     }
     _moveRight() {
-        const item = this.citems.find((c) => checkCollision(c.o, { ...this.o, x: this.o.x + this.o.deltaX }));
+        const item = this.citems.find((c) => Lib.checkCollision(c.o, { ...this.o, x: this.o.x + this.o.deltaX }));
         if (item) this._collide(item);
         this.o.x += this.o.deltaX;
     }
     _moveDown() {
-        const item = this.citems.find((c) => checkCollision(c.o, { ...this.o, y: this.o.y + this.o.deltaY }));
+        const item = this.citems.find((c) => Lib.checkCollision(c.o, { ...this.o, y: this.o.y + this.o.deltaY }));
         if (item) this._collide(item);
         this.o.y += this.o.deltaY;
     }
@@ -71,7 +68,7 @@ export class MoveableCircle extends mix(Circle).with(ArrowMovementMixin, EnterKe
     }
     _onEnterDown() {
         this._clickFeedback();
-        const item = this.grid.find((c) => checkCollision(c.o, this.o));
+        const item = this.grid.find((c) => Lib.checkCollision(c.o, this.o));
         item.color = '#ff00ff';
     }
     _clickFeedback() {

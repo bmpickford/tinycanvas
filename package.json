@@ -10,7 +10,7 @@
   ],
   "size-limit": [
     {
-      "path": "dist/*.js",
+      "path": "dist/**/*.(js)",
       "limit": "10 kB"
     }
   ],

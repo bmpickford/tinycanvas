@@ -7,7 +7,7 @@ import Lib from '../../lib/index';
  * @class Circle
  * @augments {import('../../lib/objects/index').GameObject}
  */
-export class Circle extends Lib.GameObject {
+export class Circle extends Lib.ImageGameObject {
 
     /**
      * Game object will be fully initialised here
@@ -32,10 +32,16 @@ export class Circle extends Lib.GameObject {
     }
 
     draw() {
-        const { x, y, deltaX, deltaY, r } = this.o;
-        context.beginPath();
-        context.arc(x + (deltaX / 2), y + (deltaY / 2), r / 2, 0, Math.PI * 2);
-        context.stroke();
+        if (!this.loaded) return;
+
+        const { x, y, r, deltaX, deltaY } = this.o;
+        context.drawImage(this.image, x + (deltaX / 2) - (r / 2), y + (deltaY / 2) - (r / 2), r, r);
+
+        // Keeping this here as a drawing example
+        // const { x, y, deltaX, deltaY, r } = this.o;
+        // context.beginPath();
+        // context.arc(x + (deltaX / 2), y + (deltaY / 2), r / 2, 0, Math.PI * 2);
+        // context.stroke();
     }
     destroy() {
         const { deltaX, deltaY } = this.o;

@@ -11,7 +11,7 @@ Template for jsk13 games, or any canvas application designed to be small
  - &#10004; Collision detection
  - &#10004; Global game and canvas access
  - &#10004; Out of the box build tooling, CI and testing. See below for list of build tools
- - &#10060; Easy object creation API
+ - &#10004; Easy object creation API
  - &#10004; Levels
  - &#10060; Spritesheet
  - &#10060; Animations

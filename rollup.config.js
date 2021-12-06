@@ -1,6 +1,7 @@
 import html from '@web/rollup-plugin-html';
 import summary from 'rollup-plugin-bundle-summary';
-import { terser } from "rollup-plugin-terser";
+import { terser } from 'rollup-plugin-terser';
+import copy from 'rollup-plugin-copy'
 
 export default {
   input: 'src/index.html',
@@ -15,6 +16,11 @@ export default {
       },
     }),
     summary(),
+    copy({
+      targets: [
+        { src: 'src/assets', dest: 'dist/assets' },
+      ]
+    })
   ],
 };
 

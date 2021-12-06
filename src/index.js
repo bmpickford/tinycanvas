@@ -13,5 +13,8 @@ game.add({
 game.add({
     name: 'circle',
     impl: Circle,
-    interactions: [Lib.ArrowMovementMixin, Lib.EnterKeyMixin]
+    interactions: [Lib.ArrowMovementMixin, Lib.EnterKeyMixin],
+    options: {
+        imageUrl: './assets/face.png'
+    }
 });

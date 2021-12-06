@@ -14,7 +14,7 @@ Template for jsk13 games, or any canvas application designed to be small
  - &#10004; Easy object creation API
  - &#10004; Levels
  - &#10060; Spritesheet
- - &#10060; Animations
+ - &#10004; Animations
  - &#10060; Text
 
 ## Running
@@ -36,6 +36,7 @@ Template for jsk13 games, or any canvas application designed to be small
  * [rollup](https://rollupjs.org/guide/en/) for building and minification
  * [eslint](https://eslint.org/) for linting
  * [husky](https://github.com/typicode/husky) for pre-commit hooks
+ * [jsdoc](https://jsdoc.app/) for documentation
 
 ## Development
 Using vanilla JS and the canvas API to create objects and binding events using the native DOM API
@@ -44,16 +45,29 @@ Using vanilla JS and the canvas API to create objects and binding events using t
 
 ### Structure
 ```bash
- |-src/
+ |-lib/
    # This is where the interaction mixins live. Can bind listeners for keyboard events to objects with these.
    |-interaction/
+   # Base game objects
+   |-objects/
+   # Animation functions and class
+   |-animations/
+   # Util functions
+   |-utils/
+   # Global constant for canvas and context as these are needed throughout. This should not import anything else to avoid cyclic dependencies.
+   |--canvas.js
+   # Game creation class and main loop
+   |--game.js
+   # Single entrypoint for objects, animations, utils and interaction
+   |--index.js
+ |-src/
+   # Static assets
+   |-assets/
    # In game objects and sprites
    |-objects/
    # Where the puzzles live
    |-puzzles/
-   # Global constant for canvas and context as these are needed throughout. This should not import anything else to avoid cyclic dependencies.
-   |--canvas.js
+   # Game entrypoint
+   |--index.(js|html)
  |-test/
- # Entrypoint and game loop logic
- |--index.js
 ```

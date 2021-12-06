@@ -14,7 +14,7 @@ export default {
         },
       },
     }),
-    summary()
+    summary(),
   ],
 };
 

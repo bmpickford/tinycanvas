@@ -29,6 +29,10 @@
             <pre class="prettyprint source linenums"><code>/** @module Lib/animation */
 
 /**
+ * @typedef {import('../objects/index').GameObject} GameObject
+ */
+
+/**
  * Animation config
  * @typedef {Object} AnimationConfig
  * @property {number} [frames=100] - Total number of frames the duration takes
@@ -41,60 +45,97 @@
  */
 
 
-/**
- * 
- * @param {GameObject} o Object to animate
- * @param {AnimationConfig} config Config for animation. Should include any of x, y, h, w, r in an object. Can also specify frames and start frame
- * @param {(linear|easeInOut)} [ease=linear] Ease string to use.
- */
-export function animateObject(o, config, ease) {
-    const _config = {...config};
-    if(!_config.frames) _config.frames = 100;
-    if(!_config.frame) _config.frame = 0;
-    _config.xFrom = o.o.x;
-    _config.yFrom = o.o.y;
-    _config.wFrom = o.o.w;
-    _config.hFrom = o.o.h;
-    _config.rFrom = o.o.r;
+export class Animations {
+    static _animations = [];
 
-    let fn;
-    switch (ease) {
-        case 'easeInOut':
-            fn = expEaseInOut;
-            break;
-        default:
-            fn = linear;
-            break;
+    /**
+     * @public
+     * @param {GameObject} o Object to animate
+     * @param {AnimationConfig} config Config for animation. Should include any of x, y, h, w, r in an object. Can also specify frames and start frame
+     * @param {string} [ease="linear"] Ease string to use. Options are: linear | exp | quint | quad | sine
+     * @param {Function} [onComplete] onComplete callback
+     */
+    static add(o, config, ease, onComplete) {
+        if (Animations._animations.findIndex((a) => a.id === o.id) > -1) {
+            console.warn('Already animating. TODO: implement queue or multi threads?');
+            return;
+        }
+        Animations._animations.push(o);
+        const _config = {...config};
+        if(!_config.frames) _config.frames = 100;
+        if(!_config.frame) _config.frame = 0;
+        _config.xFrom = o.o.x;
+        _config.yFrom = o.o.y;
+        _config.wFrom = o.o.w;
+        _config.hFrom = o.o.h;
+        _config.rFrom = o.o.r;
+    
+        let fn;
+        switch (ease) {
+            case 'exp':
+                fn = expEaseInOut;
+                break;
+            case 'quint':
+                fn = quinticEase;
+                break;
+            case 'quad':
+                fn = quadraticEase;
+                break;
+            case 'sine':
+                fn = sineEaseInOut;
+                break;
+            default:
+                fn = linear;
+                break;
+        }
+        animateWithFunction(o, _config, fn, () => {
+            Animations.remove(o);
+            if (onComplete &amp;&amp; typeof onComplete === "function") onComplete()
+        });
     }
-    animate(o, _config, fn);
+
+    static remove(o) {
+        const _a = Animations._animations.findIndex((a) => a.id === o.id);
+        if (_a > -1) {
+            Animations._animations.splice(_a, 1);
+        }
+    }
 }
 
-function animate(o, config, fn) {
-    if (config.frame >= config.frames) return;
+function animateWithFunction(o, config, fn, onComplete) {
+    if (config.frame >= config.frames) {
+        if (onComplete &amp;&amp; typeof onComplete === "function") onComplete();
+        return;
+    }
     config.frame = config.frame + 1;
     const progress = config.frame;
     const steps = config.frames;
-    if (config.x) {
+    if (config.x !== undefined) {
         const xDistance = config.x - config.xFrom;
         o.o.x = fn(progress, config.xFrom, xDistance, steps);
     }
-    if (config.y) {
+    if (config.y !== undefined) {
         const yDistance = config.y - config.yFrom;
         o.o.y = fn(progress, config.yFrom, yDistance, steps);
     }
-    if (config.w) {
+    if (config.w !== undefined) {
         const wDistance = config.w - config.wFrom;
         o.o.w = fn(progress, config.wFrom, wDistance, steps);
     }
-    if (config.h) {
+    if (config.h !== undefined) {
         const hDistance = config.h - config.hFrom;
         o.o.h = fn(progress, config.hFrom, hDistance, steps);
     }
-    if (config.r) {
+    if (config.r !== undefined) {
         const rDistance = config.r - config.rFrom;
         o.o.r = fn(progress, config.rFrom, rDistance, steps);
     }
-    window.requestAnimationFrame(animate.bind(null, o, config, fn));
+    window.requestAnimationFrame(animateWithFunction.bind(null, o, config, fn, onComplete));
+}
+
+function linear(currentProgress, start, distance, steps) {
+    currentProgress--;
+    return distance / steps * currentProgress + start;
 }
 
 function expEaseInOut(currentProgress, start, distance, steps) {
@@ -104,10 +145,30 @@ function expEaseInOut(currentProgress, start, distance, steps) {
     return distance / 2 * ( -Math.pow( 2, -10 * currentProgress) + 2 ) + start;
 }
 
-function linear(currentProgress, start, distance, steps) {
+
+function quinticEase(currentProgress, start, distance, steps) {
+    currentProgress /= steps/2;
+    if (currentProgress &lt; 1) {
+      return (distance/2)*(Math.pow(currentProgress, 5)) + start;
+    }
+    currentProgress -= 2;
+    return distance/2*(Math.pow(currentProgress, 5) + 2) + start;
+}
+
+
+function quadraticEase(currentProgress, start, distance, steps) {
+    currentProgress /= steps/2;
+    if (currentProgress &lt;= 1) {
+      return (distance/2)*currentProgress*currentProgress + start;
+    }
     currentProgress--;
-    return distance / steps * currentProgress + start;
-}</code></pre>
+    return -1*(distance/2) * (currentProgress*(currentProgress-2) - 1) + start;
+}
+  
+function sineEaseInOut(currentProgress, start, distance, steps) {
+    return -distance/2 * (Math.cos(Math.PI*currentProgress/steps) - 1) + start;
+}
+  </code></pre>
         </article>
     </section>
 
@@ -123,7 +184,7 @@ function linear(currentProgress, start, distance, steps) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Dec 05 2021 11:00:21 GMT+1000 (Australian Eastern Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Mon Dec 06 2021 17:23:22 GMT+1000 (Australian Eastern Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

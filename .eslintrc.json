@@ -5,13 +5,23 @@
         "mocha": true
     },
     "extends": [
-        "eslint:recommended"
+        "eslint:recommended",
+        "plugin:jsdoc/recommended"
     ],
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
     "plugins": [
-        "mocha"
-    ]
+        "mocha",
+        "jsdoc"
+    ],
+    "rules": {
+        "valid-jsdoc": "off"
+    },
+    "settings": {
+        "jsdoc": {
+            "mode": "typescript"
+        }
+    }
 }

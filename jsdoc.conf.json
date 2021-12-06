@@ -1,0 +1,22 @@
+{
+    "plugins": [
+        "node_modules/jsdoc-tsimport-plugin/index.js"
+    ],
+    "recurseDepth": 10,
+    "sourceType": "module",
+    "source": {
+        "include": ["./lib"]
+    },
+    "opts": {
+        "destination": "./docs/",
+        "recurse": "true"
+    },
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc","closure"]
+    },
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false
+    }
+}

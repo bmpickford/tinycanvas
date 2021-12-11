@@ -2,7 +2,7 @@
 ![Size](https://img.badgesize.io/https:/www.game.benpickford.me/index.zip)
 ![CI](https://github.com/bmpickford/canvas-little-helper/actions/workflows/main.yml/badge.svg)
 
-Template for jsk13 games, or any canvas application designed to be small
+> Minimal library for helping with working with the canvas
 
 ## [Demo](https://www.game.benpickford.me/)
 
@@ -70,4 +70,82 @@ Using vanilla JS and the canvas API to create objects and binding events using t
    # Game entrypoint
    |--index.(js|html)
  |-test/
+```
+
+### API
+
+#### Create game
+```
+const game = CLH.create();
+```
+
+#### Draw a square
+```
+const square - game.add.object({
+  name: 'square',
+  init: () => {
+    this.x = 100;
+    this.y = 100;
+    this.width = 50;
+    this.height = 50;
+  },
+  render: CLH.Objects.Rect,
+});
+```
+
+#### Custom render function
+```
+const square - game.add.object({
+  name: 'square',
+  init: () => {
+    this.x = 100;
+    this.y = 100;
+    this.width = 50;
+    this.height = 50;
+  },
+  render: () => {
+    this.context.drawRect(this.x / 2, this.y / 2, this.width, this.height);
+  },
+});
+```
+
+#### Movable square
+```
+const square - game.add.object({
+  name: 'square',
+  init: () => {
+    this.x = 100;
+    this.y = 100;
+    this.width = 50;
+    this.height = 50;
+    // This defines how far to move
+    this.delta = 50;
+  },
+  render: CLH.Objects.Rect,
+  interactions: [CLH.Interactions.ArrowKeys],
+});
+```
+
+#### Movable square with custom movement
+```
+const square - game.add.object({
+  name: 'square',
+  init: () => {
+    this.x = 100;
+    this.y = 100;
+    this.width = 50;
+    this.height = 50;
+    // This defines how far to move
+    this.delta = 50;
+  },
+  render: CLH.Objects.Rect,
+  interactions: [CLH.Interactions.ArrowKeys],
+  create: () => {
+    // You can add multiple of for a single event, but adding one will remove the default behaviour
+    this.on(CLH.Interactions.ArrowKeys.LEFT, this.moveLeft);
+  },
+  moveLeft: () => {
+    this.x =- this.delta / 2;
+  }
+});
 ```

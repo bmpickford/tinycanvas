@@ -15,12 +15,12 @@
     }
   ],
   "scripts": {
-    "start": "web-dev-server --node-resolve --open --watch --esbuild-target auto --app-index src/index.html",
+    "start": "web-dev-server --node-resolve --open --watch --esbuild-target auto --app-index example/index.html",
     "build": "rollup -c rollup.config.js && npm run zip",
     "test": "web-test-runner test/**/*.test.js --node-resolve",
     "test:watch": "web-test-runner \"test/**/*.test.js\" --node-resolve --watch",
     "size": "npm run build && size-limit",
-    "lint": "eslint src/",
+    "lint": "eslint lib/",
     "prepare": "husky install",
     "zip": "zip dist/index.zip dist/* -9dv",
     "doc": "jsdoc -c jsdoc.conf.json"

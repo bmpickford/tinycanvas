@@ -1,13 +1,13 @@
 
 import { expect } from '@esm-bundle/chai';
-import Lib from "../../lib/index";
+import CLH from "../../lib/index";
 import { spy } from 'sinon';
 import { sendKeys } from '@web/test-runner-commands';
 
 describe('withArrowMovement', () => {
     class emptyClass { }
     it('adds mixin functions to class', () => {
-        const movingClass = Lib.mix(emptyClass).with(Lib.WASDMovementMixin);
+        const movingClass = CLH.mix(emptyClass).with(CLH.WASDMovementMixin);
         const withArrowMovementClass = new movingClass();
         expect(typeof withArrowMovementClass.destroy).to.be.equal('function');
         expect(typeof withArrowMovementClass._onKeyDown).to.be.equal('function');
@@ -28,7 +28,7 @@ describe('withArrowMovement', () => {
                 deltaY: 0,
             }
         }
-        const mixed = Lib.mix(arrowSpyClass).with(Lib.ArrowMovementMixin);
+        const mixed = CLH.mix(arrowSpyClass).with(CLH.ArrowMovementMixin);
         const mockClass = new mixed();
         it('should move element when right arrow is clicked', async () => {           
             await sendKeys({ press: 'ArrowRight' });
@@ -64,7 +64,7 @@ describe('withArrowMovement', () => {
                 deltaY: 0,
             }
         }
-        const mixed = Lib.mix(wasdSpyClass).with(Lib.WASDMovementMixin);
+        const mixed = CLH.mix(wasdSpyClass).with(CLH.WASDMovementMixin);
         const mockClass = new mixed();
         it('should move element when d arrow is clicked', async () => {           
             await sendKeys({ press: 'd' });

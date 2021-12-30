@@ -1,5 +1,5 @@
 {
-  "name": "@clh/animations",
+  "name": "@tinycanvas/animations",
   "version": "0.0.1",
   "description": "Animation library for canvas-little-helper",
   "author": "Benjamin Pickford",

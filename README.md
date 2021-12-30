@@ -6,6 +6,11 @@
 
 ## [Demo](https://www.game.benpickford.me/)
 
+## Installation
+```bash
+npm install @tinycanvas/core
+```
+
 #### What's Included
  - &#10004; WASD / Arrow key / Mouse click / Enter key object listener
  - &#10004; Collision detection
@@ -41,24 +46,6 @@
 
 ## Development
 Using vanilla JS and the canvas API to create objects and binding events using the native DOM API
-
-**note** only modern browsers are being targeted to avoid polyfills
-
-### Structure
-```bash
- |-lib/
-   # This is where the interaction mixins live. Can bind listeners for keyboard events to objects with these.
-   |-interaction/
-   # Animation functions and class
-   |-animations/
-   # Util functions
-   |-utils/
-   # Single entrypoint for objects, animations, utils and interaction as well as game loop
-   |--index.js
-   |-test/
- # Repo with example game
- |-example/
-```
 
 ### API
 

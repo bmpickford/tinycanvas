@@ -29,7 +29,8 @@
     "prepare": "husky install",
     "compress": "terser --compress --mangle --mangle-props regex='/^_/' -o dist/index.compressed.js -- dist/index.js",
     "zip": "zip dist/index.zip dist/index.compressed.js -9dv",
-    "size": "npm run build --workspace core && size-limit"
+    "size": "npm run build --workspace core && size-limit",
+    "publish": "npm publish --workspace core --workspace animations --workspace interactions"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.3",
@@ -37,11 +38,12 @@
     "@web/test-runner-commands": "^0.5.13",
     "@web/test-runner-junit-reporter": "^0.4.9",
     "@web/test-runner-playwright": "^0.8.8",
-    "jsdoc": "^3.6.7",
-    "jsdoc-tsimport-plugin": "^1.0.5",
     "eslint": "^8.3.0",
     "eslint-plugin-mocha": "^9.0.0",
     "husky": "^7.0.4",
+    "jsdoc": "^3.6.7",
+    "jsdoc-tsimport-plugin": "^1.0.5",
+    "lerna": "^4.0.0",
     "rollup-plugin-cleanup": "^3.2.1",
     "size-limit": "^7.0.5",
     "terser": "^5.10.0"

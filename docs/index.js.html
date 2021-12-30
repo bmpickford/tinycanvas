@@ -26,23 +26,191 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** @module CLH */
+            <pre class="prettyprint source linenums"><code>import { checkCollision } from './utils/collision.js';
+import * as Animations from './animation/index.js';
+import * as Interactions from './interaction/movement.js';
+
+/** @module CLH */
 
 /**
- * @typedef {Object} Lib
- * @param {import('./animation/index').animate} animate
+ * Game options
+ * 
+ * @typedef {Object} GameOptions
+ * @property {string} [canvasElement="game"] ID of custom canvas element 
  */
 
-import * as animation from './animation/index';
-import * as interaction from './interaction/index';
-import * as objects  from './objects/index';
-import * as utils from './utils/index';
+/**
+ * GameObject options
+ * 
+ * @typedef {Object} GameObjectOptions
+ * @property {*} init Function called on initilisation
+ * @property {*} render Function called on every frame
+ * @property {boolean | GameObject[]} collision true if callback regardless of GameObject, or an array of GameObjects to specifically collide with
+ * @property {*} onCollision collision callback
+ * @property {Array} interactions array of interaction functions to initilise. See CLH.Interactions for defaults
+ */
+
+export const events = {
+    START: 'START',
+}
+
+export const gameobjectevents = {
+    COLLISION: 'COLLISION',
+}
+
+class Listener {
+    constructor (type, callback) {
+        this.type = type;
+        this.callback = callback;
+    }
+}
+
+/**
+ * This is the base object.
+ */
+class GameObject {
+    x = 0;
+    y = 0;
+    delta = 0;
+    h = 0;
+    w = 0;
+    r = 0;
+    collision = false;
+    _prevX = 0;
+    _prevY = 0;
+    /**
+     * 
+     * @param {Game} game 
+     * @param {GameObjectOptions} opts 
+     */
+    constructor(game, opts) {
+        this.game = game;
+        this.opts = opts;
+        this.id = `${opts?.name || ''}_${Math.floor(Math.random() * 100)}`
+
+        if (opts?.collision) {
+            this.collision =  true;
+            if (Array.isArray(opts.collision)) this._collisionObjects = opts.collision;
+        }
+
+        if (this.opts?.init) this.opts.init(this);
+        if (this.opts?.interactions) this.opts.interactions.forEach((i => i.init(this)));
+    }
+    render() {
+        if (this.collision &amp;&amp; (this.x !== this._prevX || this.y !== this._prevY)) {
+            const collision = this._checkCollisions();
+            if (collision &amp;&amp; this.opts.onCollision) {
+                this.opts?.onCollision(this, collision);
+            } else if (collision) {
+                this.x = this._prevX;
+                this.y = this._prevY;
+                return;
+            }
+            this._prevX = this.x;
+            this._prevY = this.y;
+        }
+        this.opts.render.call(this);
+    }
+    _checkCollisions() {
+        const objs = this._collisionObjects?.length > 0
+            ? this._collisionObjects
+            : this.game.getObjects().filter((g) => g.id !== this.id &amp;&amp; g.collision);
+        for(let o of objs) {
+            if (checkCollision(this, o)) {
+                return o;
+            }
+        }
+        return false;
+    }
+}
+
+class Game {
+    _images = [];
+
+    _sounds = [];
+
+    _listeners = [];
+
+    _objects = [];
+
+    constructor(opts) {
+        this.opts = opts;
+        this.canvas = document.getElementById(opts?.canvasElement || 'game');
+        this.context = this.canvas.getContext('2d');
+    }
+
+    add = {
+        object: (opts) => {
+            const o = new GameObject(this, opts);
+            this._objects.push(o);
+            return o;
+        },
+        image: (key, src) => {
+            const image = new Image();
+            image.id = key;
+            image.src = src;
+            this._images.push(image);
+            return image;
+        },
+        sound: (key, src) => {
+            const sound = new Audio();
+            sound.id = key;
+            sound.src = src;
+            this._sounds.push(sound);
+            return sound;
+        }
+    }
+    start() {
+        if (this._images.some((i) => !i.complete)) {
+            setTimeout(this.start.bind(this), 100);
+            return;
+        }
+        this._sendEvent(events.START);
+        this._loop();
+    }
+    on(key, callback) {
+        this._listeners.push(new Listener(key, callback));
+    }
+    getObjects() {
+        return this._objects;
+    }
+    _loop() {
+        this._clear();
+        this._render();
+        window.requestAnimationFrame(this._loop.bind(this));
+    }
+    _clear() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+    _render() {
+        for (let o of this._objects) {
+            o.render();
+        }
+    }
+    _sendEvent(type) {
+        for(let e of this._listeners) {
+            if (e.type === type) e.callback();
+        }
+    }
+}
+
+/**
+ * 
+ * @param {GameOptions} opts 
+ * @returns {Game}
+ */
+function create(opts) {
+    return new Game(opts);
+}
+
+
 export default {
-    ...objects,
-    ...animation,
-    ...interaction,
-    ...utils,
-};</code></pre>
+    create,
+    events,
+    Interactions,
+    Animations,
+};
+</code></pre>
         </article>
     </section>
 
@@ -52,13 +220,13 @@ export default {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Game.html">Game</a></li><li><a href="module-Lib.html">Lib</a></li><li><a href="module-Lib_animation.html">Lib/animation</a></li><li><a href="module-Lib_interaction.html">Lib/interaction</a></li><li><a href="module-Lib_objects.html">Lib/objects</a></li><li><a href="module-Lib_utils.html">Lib/utils</a></li></ul><h3>Classes</h3><ul><li><a href="module-Game.Game.html">Game</a></li><li><a href="module-Lib_interaction-MixinBuilder.html">MixinBuilder</a></li><li><a href="module-Lib_objects.GameObject.html">GameObject</a></li><li><a href="module-Lib_objects.ImageGameObject.html">ImageGameObject</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ArrowMovementMixin">ArrowMovementMixin</a></li><li><a href="global.html#canvas">canvas</a></li><li><a href="global.html#context">context</a></li><li><a href="global.html#EnterKeyMixin">EnterKeyMixin</a></li><li><a href="global.html#OnClickMixin">OnClickMixin</a></li><li><a href="global.html#WASDMovementMixin">WASDMovementMixin</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-CLH.html">CLH</a></li><li><a href="module-CLH_animation.html">CLH/animation</a></li><li><a href="module-CLH_interaction.html">CLH/interaction</a></li><li><a href="module-CLH_utils.html">CLH/utils</a></li></ul><h3>Classes</h3><ul><li><a href="module-CLH-GameObject.html">GameObject</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Mon Dec 06 2021 17:47:28 GMT+1000 (Australian Eastern Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Dec 30 2021 13:02:16 GMT+1000 (Australian Eastern Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

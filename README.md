@@ -49,28 +49,15 @@ Using vanilla JS and the canvas API to create objects and binding events using t
  |-lib/
    # This is where the interaction mixins live. Can bind listeners for keyboard events to objects with these.
    |-interaction/
-   # Base game objects
-   |-objects/
    # Animation functions and class
    |-animations/
    # Util functions
    |-utils/
-   # Global constant for canvas and context as these are needed throughout. This should not import anything else to avoid cyclic dependencies.
-   |--canvas.js
-   # Game creation class and main loop
-   |--game.js
-   # Single entrypoint for objects, animations, utils and interaction
+   # Single entrypoint for objects, animations, utils and interaction as well as game loop
    |--index.js
- |-src/
-   # Static assets
-   |-assets/
-   # In game objects and sprites
-   |-objects/
-   # Where the puzzles live
-   |-puzzles/
-   # Game entrypoint
-   |--index.(js|html)
- |-test/
+   |-test/
+ # Repo with example game
+ |-example/
 ```
 
 ### API
@@ -84,29 +71,13 @@ const game = CLH.create();
 ```
 const square - game.add.object({
   name: 'square',
-  init: () => {
-    this.x = 100;
-    this.y = 100;
-    this.width = 50;
-    this.height = 50;
+  init: (self) => {
+    self.x = 100;
+    self.y = 100;
+    self.width = 50;
+    self.height = 50;
   },
-  render: CLH.Objects.Rect,
-});
-```
-
-#### Custom render function
-```
-const square - game.add.object({
-  name: 'square',
-  init: () => {
-    this.x = 100;
-    this.y = 100;
-    this.width = 50;
-    this.height = 50;
-  },
-  render: () => {
-    this.context.drawRect(this.x / 2, this.y / 2, this.width, this.height);
-  },
+  render: (self) => self.context.drawRect(self.x / 2, self.y / 2, self.width, self.height),
 });
 ```
 
@@ -114,15 +85,15 @@ const square - game.add.object({
 ```
 const square - game.add.object({
   name: 'square',
-  init: () => {
-    this.x = 100;
-    this.y = 100;
-    this.width = 50;
-    this.height = 50;
-    // This defines how far to move
-    this.delta = 50;
+  init: (self) => {
+    self.x = 100;
+    self.y = 100;
+    self.width = 50;
+    self.height = 50;
+    // self defines how far to move
+    self.delta = 50;
   },
-  render: CLH.Objects.Rect,
+  render: (self) => self.context.drawRect(self.x / 2, self.y / 2, self.width, self.height),
   interactions: [CLH.Interactions.ArrowKeys],
 });
 ```
@@ -131,22 +102,22 @@ const square - game.add.object({
 ```
 const square - game.add.object({
   name: 'square',
-  init: () => {
-    this.x = 100;
-    this.y = 100;
-    this.width = 50;
-    this.height = 50;
-    // This defines how far to move
-    this.delta = 50;
+  init: (self) => {
+    self.x = 100;
+    self.y = 100;
+    self.width = 50;
+    self.height = 50;
+    // self defines how far to move
+    self.delta = 50;
   },
-  render: CLH.Objects.Rect,
+  render: (self) => self.context.drawRect(self.x / 2, self.y / 2, self.width, self.height),
   interactions: [CLH.Interactions.ArrowKeys],
-  create: () => {
+  create: (self) => {
     // You can add multiple of for a single event, but adding one will remove the default behaviour
-    this.on(CLH.Interactions.ArrowKeys.LEFT, this.moveLeft);
+    self.on(CLH.Interactions.ArrowKeys.LEFT, self.moveLeft);
   },
-  moveLeft: () => {
-    this.x =- this.delta / 2;
+  moveLeft: (self) => {
+    self.x =- self.delta / 2;
   }
 });
 ```

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: utils/collision.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,41 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: utils/collision.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** @module CLH/utils */
+
+/**
+ * @typedef {import('../index').GameObject} GameObject
+ */
 
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+/**
+ * Checks for collision of two game objects. Assumes rectangular collision
+ * @param {GameObject} o1 
+ * @param {GameObject} o2 
+ * @returns {boolean} whether the objects collide
+ */
+export function checkCollision(o1, o2) {
+    if (
+        o1.x &lt; o2.x + o2.w &amp;&amp;
+        o1.x + o1.w > o2.x &amp;&amp;
+        o1.y &lt; o2.y + o2.h &amp;&amp;
+        o1.h + o1.y > o2.y
+    ) {
+        return true;
+    }
+    return false;
+}</code></pre>
+        </article>
+    </section>
 
 
 

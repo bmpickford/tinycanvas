@@ -1,7 +1,3 @@
-// import { Circle } from './objects/circle';
-// import { Grid } from './objects/grid';
-// import puzzles from './puzzle/index';
-// import { Game } from '../lib/game';
 import CLH from '../lib/index';
 
 const game = CLH.create();
@@ -15,7 +11,9 @@ game.add.object({
         self.h = 50;
         self.w = 50;
     },
-    render: CLH.Renderers.Circle,
+    render: (self) => {
+        self.game.context.strokeRect(self.x, self.y, self.w, self.h);
+    },
     collision: true,
 });
 
@@ -28,26 +26,14 @@ game.add.object({
         self.w = 50;
         self.delta = 50;
     },
-    render: CLH.Renderers.Rectangle,
+    render: (self) => {
+        self.game.context.beginPath();
+        self.game.context.arc(self.x + (self.r / 2), self.y + (self.r / 2), self.r / 2, 0, Math.PI * 2);
+        self.game.context.stroke();
+    },
     interactions: [CLH.Interactions.ArrowKeys],
     collision: true,
     onCollision: (self) => { self.x = 300; }
 });
 
-
 game.start();
-
-// setTimeout(() => circle.x = 300, 1000);
-
-// game.add({
-//     name: 'grid',
-//     impl: Grid,
-// });
-// game.add({
-//     name: 'circle',
-//     impl: Circle,
-//     interactions: [CLH.ArrowMovementMixin, CLH.EnterKeyMixin],
-//     options: {
-//         imageUrl: './assets/face.png'
-//     }
-// });

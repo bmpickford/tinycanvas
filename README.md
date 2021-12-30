@@ -1,8 +1,8 @@
-## Game Starter
+## Canvas Little Helper WIP
 ![Size](https://img.badgesize.io/https:/www.game.benpickford.me/index.zip)
 ![CI](https://github.com/bmpickford/canvas-little-helper/actions/workflows/main.yml/badge.svg)
 
-> Minimal library for helping with working with the canvas
+> Minimal 2D library for helping with working with the canvas
 
 ## [Demo](https://www.game.benpickford.me/)
 
@@ -16,6 +16,7 @@
  - &#10060; Spritesheet
  - &#10004; Animations
  - &#10060; Text
+ - &#10060; Documentation
 
 ## Running
 `npm run start`

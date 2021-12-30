@@ -5,7 +5,7 @@
     "recurseDepth": 10,
     "sourceType": "module",
     "source": {
-        "include": ["./lib"]
+        "include": ["./"]
     },
     "opts": {
         "destination": "./docs/",

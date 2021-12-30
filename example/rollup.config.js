@@ -4,7 +4,7 @@ import { terser } from 'rollup-plugin-terser';
 import copy from 'rollup-plugin-copy'
 
 export default {
-  input: 'example/index.html',
+  input: 'example.html',
   output: { dir: 'dist' },
   plugins: [
     html({ minify: true }),
@@ -18,7 +18,7 @@ export default {
     summary(),
     copy({
       targets: [
-        { src: 'example/assets', dest: 'dist/' },
+        { src: 'assets', dest: 'dist/' },
       ]
     })
   ],

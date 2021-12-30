@@ -1,4 +1,4 @@
-/** @module CLH/interaction */
+/** @module @clh/interactions */
 
 /**
  * @typedef Interaction
@@ -26,7 +26,7 @@ class Interaction {
      * @param {string} u - Up
      * @param {string} r - Right
      * @param {string} d - Down
-     * @returns 
+     * @returns {void}
      */
     _onKeyDown(e, l, u, r, d) {
         const dx = this.ctx.deltaX || this.ctx.delta;
@@ -51,5 +51,7 @@ class WASDImpl extends Interaction {
     }
 }
 
-export const ArrowKeys = new AKImpl();
-export const WASD = new WASDImpl();
+export default {
+    ArrowKeys: new AKImpl(),
+    WASD: new WASDImpl(),
+}

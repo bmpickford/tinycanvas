@@ -6,7 +6,9 @@
   "private": true,
   "type": "module",
   "workspaces": [
-    "lib/",
+    "core/",
+    "interactions/",
+    "animations/",
     "example/"
   ],
   "files": [
@@ -14,30 +16,34 @@
   ],
   "size-limit": [
     {
-      "path": "lib/dist/index.js",
+      "path": "core/dist/index.js",
       "limit": "10 kB"
     }
   ],
   "scripts": {
     "build": "npm run build --workspaces && npm run copy && npm run doc && npm run compress && npm run zip",
-    "doc": "npm run build --workspace lib && cp -r docs dist",
-    "copy": "cp -r example/dist dist/ && cp -r lib/dist/** dist",
-    "test": "npm run test --workspace canvas-little-helper",
-    "lint": "eslint lib/ example/",
+    "doc": "jsdoc -c ./jsdoc.conf.json dist",
+    "copy": "cp -r example/dist dist/ && cp -r core/dist/** dist",
+    "test": "npm run test --workspace core",
+    "lint": "eslint .",
     "prepare": "husky install",
     "compress": "terser --compress --mangle --mangle-props regex='/^_/' -o dist/index.compressed.js -- dist/index.js",
     "zip": "zip dist/index.zip dist/index.compressed.js -9dv",
-    "size": "npm run build --workspace lib && size-limit"
+    "size": "npm run build --workspace core && size-limit"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.3",
+    "@web/test-runner": "^0.13.22",
+    "@web/test-runner-commands": "^0.5.13",
+    "@web/test-runner-junit-reporter": "^0.4.9",
+    "@web/test-runner-playwright": "^0.8.8",
+    "jsdoc": "^3.6.7",
+    "jsdoc-tsimport-plugin": "^1.0.5",
     "eslint": "^8.3.0",
     "eslint-plugin-mocha": "^9.0.0",
     "husky": "^7.0.4",
     "rollup-plugin-cleanup": "^3.2.1",
-    "size-limit": "^7.0.5"
-  },
-  "dependencies": {
+    "size-limit": "^7.0.5",
     "terser": "^5.10.0"
   }
 }

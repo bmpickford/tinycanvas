@@ -1,4 +1,4 @@
-import CLH from '../../index';
+import CLH from '../index.js';
 import { expect } from '@esm-bundle/chai';
 import { spy } from 'sinon';
 

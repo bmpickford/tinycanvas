@@ -5,10 +5,10 @@
     "recurseDepth": 10,
     "sourceType": "module",
     "source": {
-        "include": ["./index.js", "./interaction", "./utils", "./animation"]
+        "include": ["./core/index.js", "./interactions/index.js", "./animations/index.js"]
     },
     "opts": {
-        "destination": "../docs/",
+        "destination": "./docs/",
         "recurse": "true"
     },
     "tags": {

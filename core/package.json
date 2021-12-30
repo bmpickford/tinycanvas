@@ -1,0 +1,21 @@
+{
+  "name": "@clh/core",
+  "version": "0.0.1",
+  "description": "Core implementation for canvas-little-helper",
+  "author": "Benjamin Pickford",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c rollup.config.js",
+    "test": "web-test-runner test/**/*.test.js --node-resolve",
+    "test:watch": "web-test-runner \"test/**/*.test.js\" --node-resolve --watch"
+  },
+  "devDependencies": {
+    "rollup": "^2.60.1",
+    "rollup-plugin-cleanup": "^3.2.1"
+  }
+}

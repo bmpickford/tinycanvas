@@ -1,6 +1,4 @@
 import { checkCollision } from './utils/collision.js';
-import * as Animations from './animation/index.js';
-import * as Interactions from './interaction/movement.js';
 
 /** @module CLH */
 
@@ -38,7 +36,7 @@ import * as Interactions from './interaction/movement.js';
  * 
  * @public
  */
-export class GameObject {
+class GameObject {
     x = 0;
     y = 0;
     delta = 0;
@@ -182,11 +180,7 @@ function create(opts) {
  * @public
  * @module CLH
  * @property {create} create - Creates a game
- * @property {Object} Interactions - Interactions
- * @property {Aniamations} Animations - Animations
  */
- export default {
+export default {
     create,
-    Interactions,
-    Animations,
 };

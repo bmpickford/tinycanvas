@@ -1,4 +1,5 @@
-import CLH from '../lib/index';
+import CLH from '@clh/core';
+import Interactions from '@clh/interactions';
 
 const game = CLH.create();
 
@@ -31,7 +32,7 @@ game.add.object({
     render: (self) => {
         self.game.context.strokeRect(self.x, self.y, self.w, self.h);
     },
-    interactions: [CLH.Interactions.ArrowKeys],
+    interactions: [Interactions.ArrowKeys],
     collision: true,
     onCollision: (self) => { self.x = 300; }
 });

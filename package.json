@@ -1,5 +1,5 @@
 {
-  "name": "canvas-little-helper",
+  "name": "tinycanvas",
   "version": "1.0.1",
   "main": "dist/index.js",
   "license": "MIT",
@@ -8,8 +8,7 @@
   "workspaces": [
     "core/",
     "interactions/",
-    "animations/",
-    "example/"
+    "animations/"
   ],
   "files": [
     "dist/*"
@@ -29,8 +28,7 @@
     "prepare": "husky install",
     "compress": "terser --compress --mangle --mangle-props regex='/^_/' -o dist/index.compressed.js -- dist/index.js",
     "zip": "zip dist/index.zip dist/index.compressed.js -9dv",
-    "size": "npm run build --workspace core && size-limit",
-    "publish": "npm publish --workspace core --workspace animations --workspace interactions"
+    "size": "npm run build --workspace core && size-limit"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.3",

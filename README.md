@@ -1,4 +1,4 @@
-## Canvas Little Helper WIP
+## @tinycanvas WIP
 ![Size](https://img.badgesize.io/https:/www.game.benpickford.me/index.zip)
 ![CI](https://github.com/bmpickford/canvas-little-helper/actions/workflows/main.yml/badge.svg)
 

@@ -1,6 +1,6 @@
 {
   "name": "@tinycanvas/interactions",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Interaction defaults for for canvas-little-helper",
   "author": "Benjamin Pickford",
   "license": "MIT",

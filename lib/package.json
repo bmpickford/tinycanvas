@@ -4,7 +4,9 @@
   "description": "Implementation for canvas-little-helper",
   "main": "dist/index.js",
   "type": "module",
-  "files": [ "dist" ],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "test": "web-test-runner test/**/*.test.js --node-resolve",
@@ -21,6 +23,7 @@
     "jsdoc": "^3.6.7",
     "jsdoc-tsimport-plugin": "^1.0.5",
     "rollup": "^2.60.1",
+    "rollup-plugin-cleanup": "^3.2.1",
     "sinon": "^12.0.1",
     "size-limit": "^7.0.3"
   },

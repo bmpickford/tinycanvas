@@ -19,7 +19,7 @@
     "build": "rollup -c rollup.config.js",
     "test": "web-test-runner test/**/*.test.js --node-resolve",
     "test:watch": "web-test-runner \"test/**/*.test.js\" --node-resolve --watch",
-    "size": "npm run build && size-limit"
+    "size": "npm run build --silent && size-limit"
   },
   "devDependencies": {
     "@esm-bundle/chai": "^4.3.4-fix.0",

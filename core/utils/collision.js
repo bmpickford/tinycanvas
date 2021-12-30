@@ -1,4 +1,4 @@
-/** @module CLH/utils */
+/** @module @tinycanvas/utils */
 
 /**
  * @typedef {import('../index').GameObject} GameObject

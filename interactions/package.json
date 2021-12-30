@@ -8,11 +8,18 @@
   "type": "module",
   "files": [
     "dist"
+  ]
+  ,"size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "10 kB"
+    }
   ],
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "test": "web-test-runner test/**/*.test.js --node-resolve",
-    "test:watch": "web-test-runner \"test/**/*.test.js\" --node-resolve --watch"
+    "test:watch": "web-test-runner \"test/**/*.test.js\" --node-resolve --watch",
+    "size": "npm run build && size-limit"
   },
   "devDependencies": {
     "rollup": "^2.60.1",

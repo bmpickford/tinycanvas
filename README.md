@@ -51,7 +51,9 @@ Using vanilla JS and the canvas API to create objects and binding events using t
 
 #### Create game
 ```
-const game = CLH.create();
+import TC from '@tinycanvas/core';
+
+const game = TC.create();
 ```
 
 #### Draw a square

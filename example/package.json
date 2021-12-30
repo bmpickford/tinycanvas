@@ -1,6 +1,6 @@
 {
-  "name": "example",
-  "version": "1.0.1",
+  "name": "@tinycanvas/example",
+  "version": "0.0.0",
   "description": "Example project for CLH",
   "main": "example.js",
   "private": "true",
@@ -9,7 +9,8 @@
     "build": "rollup -c rollup.config.js"
   },
   "dependencies": {
-    "@tinycanvas/core": "latest"
+    "@tinycanvas/core": "latest",
+    "@tinycanvas/animations": "latest"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^13.1.1",

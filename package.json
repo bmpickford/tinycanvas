@@ -13,22 +13,16 @@
   "files": [
     "dist/*"
   ],
-  "size-limit": [
-    {
-      "path": "core/dist/index.js",
-      "limit": "10 kB"
-    }
-  ],
   "scripts": {
-    "build": "npm run build --workspaces && npm run copy && npm run doc && npm run compress && npm run zip",
+    "build": "npm run build --workspaces",
+    "build:example": "cp example && npm run build",
     "doc": "jsdoc -c ./jsdoc.conf.json dist",
-    "copy": "cp -r example/dist dist/ && cp -r core/dist/** dist",
     "test": "npm run test --workspace core",
     "lint": "eslint .",
     "prepare": "husky install",
-    "compress": "terser --compress --mangle --mangle-props regex='/^_/' -o dist/index.compressed.js -- dist/index.js",
-    "zip": "zip dist/index.zip dist/index.compressed.js -9dv",
-    "size": "npm run build --workspace core && size-limit"
+    "size": "npm run size:compress && npm run size:zip",
+    "size:compress": "terser --compress --mangle --mangle-props regex='/^_/' -o dist/index.compressed.js -- core/dist/index.js",
+    "size:zip": "zip dist/index.zip dist/index.compressed.js -9dv"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.3",

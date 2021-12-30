@@ -4,7 +4,7 @@
   "description": "Example project for CLH",
   "main": "example.js",
   "scripts": {
-    "start": "web-dev-server --node-resolve --open --watch --esbuild-target auto --app-index example.html",
+    "start": "web-dev-server --node-resolve --open --watch --esbuild-target auto --app-index index.html",
     "build": "rollup -c rollup.config.js"
   },
   "dependencies": {

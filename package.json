@@ -19,12 +19,13 @@
     }
   ],
   "scripts": {
-    "build": "npm run build --workspaces && npm run copy && npm run zip",
+    "build": "npm run build --workspaces && npm run copy && npm run compress && npm run zip",
     "copy": "cp -r example/dist dist/ && cp -r lib/dist/** dist",
     "test": "npm run test --workspace canvas-little-helper",
     "lint": "eslint lib/ example/",
     "prepare": "husky install",
-    "zip": "zip dist/index.zip dist/index.js -9dv",
+    "compress": "terser --compress --mangle --mangle-props regex='/^_/' -o dist/index.compressed.js -- dist/index.js",
+    "zip": "zip dist/index.zip dist/index.compressed.js -9dv",
     "size": "npm run build --workspace lib && size-limit"
   },
   "devDependencies": {
@@ -34,5 +35,8 @@
     "husky": "^7.0.4",
     "rollup-plugin-cleanup": "^3.2.1",
     "size-limit": "^7.0.5"
+  },
+  "dependencies": {
+    "terser": "^5.10.0"
   }
 }

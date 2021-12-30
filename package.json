@@ -19,7 +19,8 @@
     }
   ],
   "scripts": {
-    "build": "npm run build --workspaces && npm run copy && npm run compress && npm run zip",
+    "build": "npm run build --workspaces && npm run copy && npm run doc && npm run compress && npm run zip",
+    "doc": "npm run build --workspace lib && cp -r docs dist",
     "copy": "cp -r example/dist dist/ && cp -r lib/dist/** dist",
     "test": "npm run test --workspace canvas-little-helper",
     "lint": "eslint lib/ example/",

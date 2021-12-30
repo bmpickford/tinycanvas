@@ -8,16 +8,17 @@
   "workspaces": [
     "core/",
     "interactions/",
-    "animations/"
+    "animations/",
+    "example"
   ],
   "files": [
     "dist/*"
   ],
   "scripts": {
     "build": "npm run build --workspaces",
-    "build:example": "rollup -c example/rollup.config.js",
+    "build:example": "npm run build --workspace=example && npm run size",
     "doc": "jsdoc -c ./jsdoc.conf.json dist",
-    "test": "npm run test --workspace core",
+    "test": "npm run test --workspaces --if-present",
     "lint": "eslint .",
     "prepare": "husky install",
     "size": "npm run size:compress && npm run size:zip",
@@ -35,8 +36,6 @@
     "husky": "^7.0.4",
     "jsdoc": "^3.6.7",
     "jsdoc-tsimport-plugin": "^1.0.5",
-    "lerna": "^4.0.0",
-    "rollup-plugin-cleanup": "^3.2.1",
     "size-limit": "^7.0.5",
     "terser": "^5.10.0"
   }

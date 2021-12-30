@@ -17,8 +17,6 @@
   ],
   "scripts": {
     "build": "rollup -c rollup.config.js",
-    "test": "web-test-runner test/**/*.test.js --node-resolve",
-    "test:watch": "web-test-runner \"test/**/*.test.js\" --node-resolve --watch",
     "size": "npm run build && size-limit"
   },
   "devDependencies": {

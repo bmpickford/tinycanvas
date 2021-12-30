@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Example project for CLH",
   "main": "example.js",
-  "private": "true",
+  "private": true,
   "scripts": {
     "start": "web-dev-server --node-resolve --open --watch --esbuild-target auto --app-index index.html",
     "build": "rollup -c rollup.config.js"

@@ -5,8 +5,8 @@ import copy from 'rollup-plugin-copy';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 
 export default {
-  input: 'example/index.html',
-  output: { dir: 'dist' },
+  input: 'index.html',
+  output: { dir: '../dist' },
   plugins: [
     html({ minify: true }),
     terser({
@@ -19,7 +19,7 @@ export default {
     summary(),
     copy({
       targets: [
-        { src: 'example/assets', dest: 'dist/' },
+        { src: 'assets', dest: '../dist/' },
       ]
     }),
     nodeResolve(),

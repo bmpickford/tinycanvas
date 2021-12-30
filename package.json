@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "build": "npm run build --workspaces",
-    "build:example": "cp example && npm run build",
+    "build:example": "rollup -c example/rollup.config.js",
     "doc": "jsdoc -c ./jsdoc.conf.json dist",
     "test": "npm run test --workspace core",
     "lint": "eslint .",

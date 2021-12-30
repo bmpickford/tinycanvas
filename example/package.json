@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@tinycanvas/core": "latest",
-    "@tinycanvas/animations": "latest"
+    "@tinycanvas/interactions": "latest"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^13.1.1",

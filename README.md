@@ -82,10 +82,12 @@ const square = game.add.object({
     self.y = 100;
     self.width = 50;
     self.height = 50;
-    // self defines how far to move
+    // delta defines how far to move
     self.delta = 50;
   },
-  render: (self) => self.context.drawRect(self.x / 2, self.y / 2, self.width, self.height),
+  render: (self) => {
+    self.context.drawRect(self.x / 2, self.y / 2, self.width, self.height);
+  },
   interactions: [ArrowKeys],
 });
 
@@ -94,6 +96,10 @@ game.start();
 
 #### Movable square with custom movement
 ```javascript
+import TC from '@tinycanvas/core';
+import { ArrowKeys } from '@tinycanvas/interaction';
+
+const game = TC.create();
 const square = game.add.object({
   name: 'square',
   init: (self) => {
@@ -101,7 +107,7 @@ const square = game.add.object({
     self.y = 100;
     self.width = 50;
     self.height = 50;
-    // self defines how far to move
+    // delta defines how far to move
     self.delta = 50;
   },
   render: (self) => self.context.drawRect(self.x / 2, self.y / 2, self.width, self.height),

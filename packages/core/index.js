@@ -43,7 +43,7 @@ class GameObject {
     h = 0;
     w = 0;
     r = 0;
-    _collision = false;
+    collision = false;
     _x0 = 0;
     _y0 = 0;
 
@@ -58,7 +58,7 @@ class GameObject {
         this.id = `${opts?.name || ''}_${Math.floor(Math.random() * 100)}`
 
         if (opts?.collision) {
-            this._collision =  true;
+            this.collision =  true;
             if (Array.isArray(opts.collision)) this._collisionObjects = opts.collision;
         }
 
@@ -66,7 +66,7 @@ class GameObject {
         if (this.opts?.interactions) this.opts.interactions.forEach((i => i.init(this)));
     }
     render() {
-        if (this._collision && (this.x !== this._x0 || this.y !== this._y0)) {
+        if (this.collision && (this.x !== this._x0 || this.y !== this._y0)) {
             const collision = this._checkCollisions();
             if (collision && this.opts.onCollision) {
                 this.opts?.onCollision(this, collision);

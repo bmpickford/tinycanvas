@@ -2,15 +2,14 @@
   "name": "@tinycanvas/example",
   "version": "0.0.0",
   "description": "Example project for CLH",
-  "main": "example.js",
-  "private": true,
+  "main": "index.js",
   "scripts": {
     "start": "web-dev-server --node-resolve --open --watch --esbuild-target auto --app-index index.html",
     "build": "rollup -c rollup.config.js"
   },
   "dependencies": {
-    "@tinycanvas/core": "latest",
-    "@tinycanvas/interactions": "latest"
+    "@tinycanvas/core": "^1.0.2",
+    "@tinycanvas/interactions": "^0.0.3"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^13.1.1",

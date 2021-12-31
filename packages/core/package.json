@@ -2,7 +2,8 @@
   "name": "@tinycanvas/core",
   "version": "0.0.5",
   "description": "Core implementation for canvas-little-helper",
-  "author": "Benjamin Pickford",
+  "author": "Benjamin Pickford <b.mpickford@outlook.com> (https://benpickford.me)",
+  "keywords": ["jsk13", "canvas", "2d"],
   "license": "MIT",
   "module": "index.js",
   "exports": {
@@ -29,5 +30,16 @@
   "devDependencies": {
     "@esm-bundle/chai": "^4.3.4-fix.0",
     "sinon": "^12.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bmpickford/tinycanvas"
+  },
+  "bugs": {
+    "url": "https://github.com/bmpickford/tinycanvas/issues",
+    "email": "b.mpickford@outlook.com"
+  },
+  "engines": {
+    "node": ">=16"
   }
 }

@@ -3,7 +3,7 @@
 
 > Minimal 2D library for helping with working with the canvas
 
-## [Demo](https://www.game.benpickford.me/)
+### [Example](https://www.game.benpickford.me/) * [Docs]()
 
 ## Installation
 ```bash
@@ -32,13 +32,11 @@ npm install @tinycanvas/core
 `npm run test`
 
 ## Tooling
- * [web-dev-server](https://modern-web.dev/docs/dev-server/overview/) as a dev server.
  * [web-test-runner](https://modern-web.dev/docs/test-runner/overview/) as a testing configuration helper.
     * [playwright](https://modern-web.dev/docs/test-runner/browser-launchers/playwright/) as the browser launcher
     * [mocha](https://mochajs.org/) as the test runner and testing syntax.
  * github actions for CI
  * [size-limit](https://github.com/ai/size-limit) for tracking bundle size
- * [rollup](https://rollupjs.org/guide/en/) for building and minification
  * [eslint](https://eslint.org/) for linting
  * [husky](https://github.com/typicode/husky) for pre-commit hooks
  * [jsdoc](https://jsdoc.app/) for documentation
@@ -49,15 +47,18 @@ Using vanilla JS and the canvas API to create objects and binding events using t
 ### API
 
 #### Create game
-```
+```javascript
 import TC from '@tinycanvas/core';
 
 const game = TC.create();
 ```
 
 #### Draw a square
-```
-const square - game.add.object({
+```javascript
+import TC from '@tinycanvas/core';
+
+const game = TC.create();
+const square = game.add.object({
   name: 'square',
   init: (self) => {
     self.x = 100;
@@ -70,8 +71,12 @@ const square - game.add.object({
 ```
 
 #### Movable square
-```
-const square - game.add.object({
+```javascript
+import TC from '@tinycanvas/core';
+import { ArrowKeys } from '@tinycanvas/interaction';
+
+const game = TC.create();
+const square = game.add.object({
   name: 'square',
   init: (self) => {
     self.x = 100;
@@ -82,13 +87,13 @@ const square - game.add.object({
     self.delta = 50;
   },
   render: (self) => self.context.drawRect(self.x / 2, self.y / 2, self.width, self.height),
-  interactions: [CLH.Interactions.ArrowKeys],
+  interactions: [ArrowKeys],
 });
 ```
 
 #### Movable square with custom movement
-```
-const square - game.add.object({
+```javascript
+const square = game.add.object({
   name: 'square',
   init: (self) => {
     self.x = 100;
@@ -99,10 +104,10 @@ const square - game.add.object({
     self.delta = 50;
   },
   render: (self) => self.context.drawRect(self.x / 2, self.y / 2, self.width, self.height),
-  interactions: [CLH.Interactions.ArrowKeys],
+  interactions: [ArrowKeys],
   create: (self) => {
     // You can add multiple of for a single event, but adding one will remove the default behaviour
-    self.on(CLH.Interactions.ArrowKeys.LEFT, self.moveLeft);
+    self.on(ArrowKeys.LEFT, self.moveLeft);
   },
   moveLeft: (self) => {
     self.x =- self.delta / 2;

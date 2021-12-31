@@ -2,7 +2,8 @@
   "name": "@tinycanvas/interactions",
   "version": "0.0.5",
   "description": "Interaction defaults for for canvas-little-helper",
-  "author": "Benjamin Pickford",
+  "author": "Benjamin Pickford <b.mpickford@outlook.com> (https://benpickford.me)",
+  "keywords": ["jsk13", "canvas", "2d"],
   "license": "MIT",
   "module": "index.js",
   "exports": {
@@ -22,5 +23,16 @@
   ],
   "scripts": {
     "size": "size-limit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bmpickford/tinycanvas"
+  },
+  "bugs": {
+    "url": "https://github.com/bmpickford/tinycanvas/issues",
+    "email": "b.mpickford@outlook.com"
+  },
+  "engines": {
+    "node": ">=16"
   }
 }

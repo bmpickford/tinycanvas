@@ -15,8 +15,8 @@ class Interaction {
         document.removeEventListener('keydown', this._boundOnKeyDown);
     }
     _isOutOfBounds(dx, dy) {
-        if (this.ctx.x - dx < 0 || this.ctx.x + dx >= this.ctx.game.canvas.width ||
-            this.ctx.y - dy < 0 || this.ctx.y + dy >= this.ctx.game.canvas.height) return true;
+        if (this.ctx.x + dx < 0 || this.ctx.x + dx >= this.ctx.game.canvas.width ||
+            this.ctx.y + dy < 0 || this.ctx.y + dy >= this.ctx.game.canvas.height) return true;
         return false;
     }
     /**
@@ -29,13 +29,17 @@ class Interaction {
      * @returns {void}
      */
     _onKeyDown(e, l, u, r, d) {
-        const dx = this.ctx.deltaX || this.ctx.delta;
-        const dy = this.ctx.deltaY || this.ctx.delta;
-        if (this._isOutOfBounds(dx, dy)) return;
-        if(e.key === l) this.ctx.x -= dx;
-        if(e.key === r) this.ctx.x += dx;
-        if(e.key === u) this.ctx.y -= dy;
-        if(e.key === d) this.ctx.y += dy;
+        const dx = this.ctx.deltaX || this.ctx.delta || this.ctx.w || 0;
+        const dy = this.ctx.deltaY || this.ctx.delta || this.ctx.h || 0;
+        let _x = 0, _y = 0;
+        if(e.key === l) _x = dx * -1;
+        else if(e.key === r) _x = dx;
+        else if(e.key === u) _y = dy * -1;
+        else if(e.key === d) _y = dy;
+        else return;
+        if (this._isOutOfBounds(_x, _y)) return;
+        this.ctx.x += _x;
+        this.ctx.y += _y;
     }
 }
 
@@ -51,7 +55,5 @@ class WASDImpl extends Interaction {
     }
 }
 
-export default {
-    ArrowKeys: new AKImpl(),
-    WASD: new WASDImpl(),
-}
+export const ArrowKeys = new AKImpl();
+export const WASD = new WASDImpl();

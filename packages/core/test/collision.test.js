@@ -1,4 +1,4 @@
-import { checkCollision } from '../utils/collision.js';
+import { checkCollision } from '../src/collision.js';
 import { expect } from '@esm-bundle/chai';
 
 describe('collision', () => {

@@ -27,6 +27,7 @@
     "eslint-plugin-mocha": "^9.0.0",
     "husky": "^7.0.4",
     "jsdoc": "^3.6.7",
+    "jsdoc-to-markdown": "^7.1.0",
     "jsdoc-tsimport-plugin": "^1.0.5",
     "size-limit": "^7.0.5",
     "vite": "^2.7.2"

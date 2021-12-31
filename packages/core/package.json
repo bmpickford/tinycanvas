@@ -1,6 +1,6 @@
 {
   "name": "@tinycanvas/core",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Core implementation for canvas-little-helper",
   "author": "Benjamin Pickford",
   "license": "MIT",

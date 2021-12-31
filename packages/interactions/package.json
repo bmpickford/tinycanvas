@@ -1,6 +1,6 @@
 {
   "name": "@tinycanvas/interactions",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Interaction defaults for for canvas-little-helper",
   "author": "Benjamin Pickford",
   "license": "MIT",
@@ -8,8 +8,8 @@
   "type": "module",
   "files": [
     "dist"
-  ]
-  ,"size-limit": [
+  ],
+  "size-limit": [
     {
       "path": "dist/index.js",
       "limit": "10 kB"

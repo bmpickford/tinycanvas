@@ -1,6 +1,6 @@
 {
   "name": "@tinycanvas/animations",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Animation library for canvas-little-helper",
   "author": "Benjamin Pickford",
   "license": "MIT",

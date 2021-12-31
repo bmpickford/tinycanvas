@@ -1,9 +1,9 @@
-## @tinycanvas WIP
+# @tinycanvas WIP
 ![CI](https://github.com/bmpickford/canvas-little-helper/actions/workflows/main.yml/badge.svg)
 
 > Minimal 2D library for helping with working with the canvas
 
-### [Example](https://www.game.benpickford.me/) * [Docs]()
+#### [Example](https://www.game.benpickford.me/) - [Docs]()
 
 ## Installation
 ```bash
@@ -11,16 +11,13 @@ npm install @tinycanvas/core
 ```
 
 #### What's Included
- - &#10004; WASD / Arrow key / Mouse click / Enter key object listener
  - &#10004; Collision detection
- - &#10004; Global game and canvas access
- - &#10004; Out of the box build tooling, CI and testing. See below for list of build tools
  - &#10004; Easy object creation API
  - &#10004; Levels
  - &#10060; Spritesheet
- - &#10004; Animations
  - &#10060; Text
- - &#10060; Documentation
+ - &#10004; Animations (with `@tinycanvas/animations`)
+ - &#10004; WASD / Arrow key / Mouse click / Enter key object listener (with `@tinycanvas/interactions`)
 
 ## Running
 `npm run start`
@@ -68,6 +65,8 @@ const square = game.add.object({
   },
   render: (self) => self.context.drawRect(self.x / 2, self.y / 2, self.width, self.height),
 });
+
+game.start();
 ```
 
 #### Movable square
@@ -89,6 +88,8 @@ const square = game.add.object({
   render: (self) => self.context.drawRect(self.x / 2, self.y / 2, self.width, self.height),
   interactions: [ArrowKeys],
 });
+
+game.start();
 ```
 
 #### Movable square with custom movement
@@ -113,4 +114,6 @@ const square = game.add.object({
     self.x =- self.delta / 2;
   }
 });
+
+game.start();
 ```

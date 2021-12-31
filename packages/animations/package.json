@@ -1,9 +1,13 @@
 {
   "name": "@tinycanvas/animations",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Animation library for canvas-little-helper",
   "author": "Benjamin Pickford <b.mpickford@outlook.com> (https://benpickford.me)",
-  "keywords": ["jsk13", "canvas", "2d"],
+  "keywords": [
+    "jsk13",
+    "canvas",
+    "2d"
+  ],
   "license": "MIT",
   "module": "index.js",
   "exports": {

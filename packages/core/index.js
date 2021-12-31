@@ -1,6 +1,6 @@
 import { checkCollision } from './utils/collision.js';
 
-/** @module @tinycanvas */
+/** @module @tinycanvas/core */
 
 /**
  * Game options
@@ -178,7 +178,7 @@ function create(opts) {
 
 /**
  * @public
- * @module @tinycanvas
+ * @module @tinycanvas/core
  * @property {create} create - Creates a game
  */
 export default {

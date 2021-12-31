@@ -1,7 +1,6 @@
 {
   "name": "tinycanvas",
   "version": "1.0.1",
-  "main": "dist/index.js",
   "license": "MIT",
   "private": true,
   "type": "module",
@@ -9,22 +8,15 @@
     "example/",
     "packages/*"
   ],
-  "files": [
-    "dist/*"
-  ],
   "scripts": {
-    "build": "npm run build --workspaces",
-    "build:example": "npm run build -w @tinycanvas/example && npm run core:minzip",
-    "build:core": "npm run build -w @tinycanvas/core",
-    "doc": "jsdoc -c ./jsdoc.conf.json dist",
-    "test": "npm run test --workspaces --if-present",
+    "build": "npm run clean && npm run build --ws",
+    "clean": "npm exec -c 'rm -rf dist/' --ws",
+    "doc": "jsdoc -c ./jsdoc.conf.json",
+    "test": "npm run test --ws --if-present",
+    "size": "npm run size --ws --if-present",
     "lint": "eslint .",
-    "size": "npm run size --workspaces --if-present",
-    "core:minzip": "npm run build:core && npm run core:compress && npm run core:zip",
-    "core:compress": "terser --compress --mangle --mangle-props regex='/^_/' -o dist/index.compressed.js -- dist/index.js",
-    "core:zip": "zip dist/index.zip dist/index.compressed.js -9dv",
     "prepare": "husky install",
-    "prepublish": "rm -rf dist/ && npm run build"
+    "prepublish": "npm run build"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.3",

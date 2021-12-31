@@ -1,4 +1,4 @@
-/** @module @clh/animations */
+/** @module @tinycanvas/animations */
 
 /**
  * @typedef {Object} GameObject

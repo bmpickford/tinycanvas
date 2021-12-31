@@ -5,7 +5,8 @@
     "recurseDepth": 10,
     "sourceType": "module",
     "source": {
-        "include": ["./core/index.js", "./interactions/index.js", "./animations/index.js"]
+        "include": ["./packages"],
+        "includePattern": "index.js"
     },
     "opts": {
         "destination": "./docs/",

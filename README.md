@@ -1,5 +1,4 @@
 ## @tinycanvas WIP
-![Size](https://img.badgesize.io/https://cdn.jsdelivr.net/npm/@tinycanvas/core@1.0.3)
 ![CI](https://github.com/bmpickford/canvas-little-helper/actions/workflows/main.yml/badge.svg)
 
 > Minimal 2D library for helping with working with the canvas

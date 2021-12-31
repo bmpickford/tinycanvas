@@ -1,26 +1,26 @@
 {
   "name": "@tinycanvas/animations",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Animation library for canvas-little-helper",
   "author": "Benjamin Pickford",
   "license": "MIT",
-  "main": "dist/index.js",
+  "module": "index.js",
+  "exports": {
+    ".": {
+      "import": "./index.js"
+    }
+  },
   "type": "module",
   "files": [
-    "dist"
+    "index.js"
   ],
   "size-limit": [
     {
-      "path": "dist/index.js",
+      "path": "index.js",
       "limit": "10 kB"
     }
   ],
   "scripts": {
-    "build": "rollup -c rollup.config.js",
-    "size": "npm run build --silent && size-limit"
-  },
-  "devDependencies": {
-    "rollup": "^2.60.1",
-    "rollup-plugin-cleanup": "^3.2.1"
+    "size": "size-limit"
   }
 }

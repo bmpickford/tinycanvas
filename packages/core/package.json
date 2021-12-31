@@ -1,30 +1,33 @@
 {
   "name": "@tinycanvas/core",
-  "version": "1.0.3",
+  "version": "0.0.5",
   "description": "Core implementation for canvas-little-helper",
   "author": "Benjamin Pickford",
   "license": "MIT",
-  "main": "dist/index.js",
+  "module": "index.js",
+  "exports": {
+    ".": {
+      "import": "./index.js"
+    }
+  },
   "type": "module",
   "files": [
-    "dist"
+    "index.js",
+    "utils"
   ],
   "size-limit": [
     {
-      "path": "dist/index.js",
+      "path": "index.js",
       "limit": "10 kB"
     }
   ],
   "scripts": {
-    "build": "rollup -c rollup.config.js",
     "test": "web-test-runner test/**/*.test.js --node-resolve",
     "test:watch": "web-test-runner \"test/**/*.test.js\" --node-resolve --watch",
-    "size": "npm run build --silent && size-limit"
+    "size": "size-limit"
   },
   "devDependencies": {
     "@esm-bundle/chai": "^4.3.4-fix.0",
-    "rollup": "^2.60.1",
-    "rollup-plugin-cleanup": "^3.2.1",
     "sinon": "^12.0.1"
   }
 }

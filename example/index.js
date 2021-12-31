@@ -1,5 +1,5 @@
-import CLH from '@tinycanvas/core';
-import Interactions from '@tinycanvas/interactions';
+import CLH from '../packages/core';
+import Interactions from '../packages/interactions';
 
 const game = CLH.create();
 

@@ -14,7 +14,6 @@ function create(opts) {
 
 /**
  * @public
- * @module @tinycanvas/core
  * @property {create} create - Creates a game
  */
 export default {

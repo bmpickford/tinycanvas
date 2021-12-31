@@ -1,5 +1,3 @@
-/** @module @tinycanvas/utils */
-
 /**
  * @typedef {import('../index').GameObject} GameObject
  */

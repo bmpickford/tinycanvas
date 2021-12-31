@@ -3,7 +3,7 @@
 
 > Minimal 2D library for helping with working with the canvas
 
-#### [Example](https://www.game.benpickford.me/) - [Docs]()
+#### [Example](https://www.game.benpickford.me/) - [Docs](https://bmpickford.github.io/tinycanvas/)
 
 ## Installation
 ```bash

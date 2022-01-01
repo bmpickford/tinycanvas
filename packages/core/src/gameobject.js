@@ -1,10 +1,9 @@
 import { checkCollision } from './collision.js';
-
-
 /**
  * GameObject options
  * 
  * @public
+ * @alias module:core~GameObject
  * @typedef {Object} GameObjectOptions
  * @property {*} init Function called on initilisation
  * @property {*} render Function called on every frame
@@ -31,8 +30,8 @@ export class GameObject {
 
     /**
      * 
-     * @param {Game} game 
-     * @param {GameObjectOptions} opts 
+     * @param {Game} game - Game object
+     * @param {GameObjectOptions} opts - Options
      */
     constructor(game, opts) {
         this.game = game;

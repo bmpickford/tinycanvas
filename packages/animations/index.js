@@ -1,28 +1,24 @@
-/** @module @tinycanvas/animations */
-
-/**
- * @typedef {Object} GameObject
- */
+/** @module animations */
 
 /**
  * Animation config
+ * 
  * @typedef {Object} AnimationConfig
  * @property {number} [frames=100] - Total number of frames the duration takes
  * @property {number} [frame=0] - Frame to start at
- * @property {number} x - X position to animate to
- * @property {number} y - Y position to animate to
- * @property {number} w - width to animate to
- * @property {number} h - height to animate to
- * @property {number} r - radius to animate to
+ * @property {number} [x] - X position to animate to
+ * @property {number} [y] - Y position to animate to
+ * @property {number} [w] - width to animate to
+ * @property {number} [h] - height to animate to
+ * @property {number} [r] - radius to animate to
  */
-
 
 export default class Animations {
     static _animations = [];
 
     /**
      * @public
-     * @param {GameObject} o Object to animate
+     * @param {module:core~GameObject} o Object to animate
      * @param {AnimationConfig} config Config for animation. Should include any of x, y, h, w, r in an object. Can also specify frames and start frame
      * @param {string} [ease="linear"] Ease string to use. Options are: linear | exp | quint | quad | sine
      * @param {Function} [onComplete] onComplete callback
@@ -52,6 +48,13 @@ export default class Animations {
             onComplete()
         });
     }
+    /**
+     * Remove an animation from the current animation list
+     * 
+     * @public
+     * @param {module:core~GameObject} o Object to animate
+     * @returns {void}
+     */
 
     static remove(o) {
         const _a = Animations._animations.findIndex((a) => a.id === o.id);

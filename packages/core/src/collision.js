@@ -1,10 +1,7 @@
 /**
- * @typedef {import('../index').GameObject} GameObject
- */
-
-
-/**
  * Checks for collision of two game objects. Assumes rectangular collision
+ * 
+ * @private
  * @param {GameObject} o1 
  * @param {GameObject} o2 
  * @returns {boolean} whether the objects collide

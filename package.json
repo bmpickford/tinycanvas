@@ -11,7 +11,7 @@
   "scripts": {
     "build": "npm run clean && npm run build --ws --if-present",
     "clean": "npm exec -c 'rm -rf dist/' --ws",
-    "doc": "jsdoc -c ./jsdoc.conf.json",
+    "doc": "for p in ./packages/*; do npx jsdoc2md $p/*.js > docs/$(basename $p).md; done",
     "test": "npm run test --ws --if-present",
     "size": "npm run size --ws --if-present",
     "lint": "eslint .",
@@ -28,7 +28,6 @@
     "husky": "^7.0.4",
     "jsdoc": "^3.6.7",
     "jsdoc-to-markdown": "^7.1.0",
-    "jsdoc-tsimport-plugin": "^1.0.5",
     "size-limit": "^7.0.5",
     "vite": "^2.7.2"
   }

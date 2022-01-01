@@ -1,21 +1,23 @@
 import { Game } from './src/game';
 
-/** @module @tinycanvas/core */
-
 /**
  * Creates a game
  *
- * @function
- * @property {GameOptions} opts 
+ * @function create
+ * @alias core:create
+ * @property {GameOptions} opts - Game options
+ * @returns {Game}
  */
 function create(opts) {
     return new Game(opts);
 }
 
 /**
- * @public
- * @property {create} create - Creates a game
+ * @module core
  */
 export default {
+    /**
+     * @see create
+     */
     create,
 };

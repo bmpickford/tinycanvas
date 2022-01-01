@@ -1,19 +1,33 @@
-/** @module @tinycanvas/interactions */
+/** @module interactions */
 
 /**
- * @typedef Interaction
- * @property {function} init - init function
- * @property {function} destroy - destroy function
+ * @public
  */
 class Interaction {
-    init(self) {
-        this.ctx = self;
+    /**
+     * Initialisers listeners and bindings
+     * 
+     * @param {module:core.Game} context 
+     */
+    init(context) {
+        this.ctx = context;
         this._boundOnKeyDown = this._onKeyDown.bind(this);
         document.addEventListener('keydown', this._boundOnKeyDown);
     }
+    /**
+     * Detaches listeners
+     * 
+     * @returns {void}
+     */
     destroy() {
         document.removeEventListener('keydown', this._boundOnKeyDown);
     }
+    /**
+     * @private
+     * @param {number} dx - x movement
+     * @param {*} dy - y movement
+     * @returns {boolean}
+     */
     _isOutOfBounds(dx, dy) {
         if (this.ctx.x + dx < 0 || this.ctx.x + dx >= this.ctx.game.canvas.width ||
             this.ctx.y + dy < 0 || this.ctx.y + dy >= this.ctx.game.canvas.height) return true;
@@ -21,6 +35,7 @@ class Interaction {
     }
     /**
      * @function
+     * @private
      * @param {*} e - Event
      * @param {string} l - Left
      * @param {string} u - Up
@@ -55,5 +70,12 @@ class WASDImpl extends Interaction {
     }
 }
 
+/**
+ * @public
+ */
 export const ArrowKeys = new AKImpl();
+
+/**
+ * @public
+ */
 export const WASD = new WASDImpl();

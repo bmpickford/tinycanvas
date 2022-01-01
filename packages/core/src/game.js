@@ -1,3 +1,4 @@
+
 import { GameObject } from './gameobject';
 
 /**
@@ -13,34 +14,82 @@ import { GameObject } from './gameobject';
  * 
  * @public
  * @typedef {Object} Listener
- * @property {(START)} type - Listener key
- * @property {*} callback - Callback
+ * @property {(START|END)} type - Listener key
+ * @property {function} callback - Callback
  */
 
 
+/**
+ * Default game object
+ * 
+ * @public
+ */
 export class Game {
+    /**
+     * @private
+     */
     _images = [];
 
+    /**
+     * @private
+     */
     _sounds = [];
 
     /**
+     * @private
      * @type {Listener[]}
      */
     _listeners = [];
 
+    /**
+     * @private
+     */
     _objects = [];
-    level = 0;
+
+    /**
+     * @private
+     */
+    _level = 0;
+
+    /**
+     * @private
+     */
     _levels = [];
+    /**
+     * 
+     * @param {GameOptions} opts - Game options
+     */
     constructor(opts) {
         this.opts = opts;
         this.canvas = document.getElementById(opts?.canvasElement || 'game');
         this.context = this.canvas.getContext('2d');
         this._levels = opts?.levels || [];
     }
-
+    /**
+     * Add elements to the game
+     * 
+     * @property {AddGameObject} object - Adds a game object to the game
+     * @property {AddImage} image - Adds image to the game. If the game hasn't been started, will preload all images before starting
+     * @property {AddSound} sound - Adds sound file to the game for preloading
+     * @example <caption>add object</caption>
+     * game.add.object({ name: 'item_1' });
+     * 
+     * @example <caption>add image</caption>
+     * game.add.image('my_image', 'https://...');
+     * 
+     * @example <caption>add imported image</caption>
+     * import img from '/assets/images/myimage.png';
+     * game.add.image('my_image', img);
+     * 
+     * @example <caption>add sound</caption>
+     * import sound_1 from '/assets/sounds/mysound.mp3';
+     * game.add.sound('my_sound', sound_1);
+     */
     add = {
         /**
+         * Add object to the game
          * 
+         * @function AddGameObject
          * @param {import('./gameobject.js').GameObjectOptions} opts - Options to pass through to the game object
          * @returns {import('./gameobject.js').GameObject}
          */
@@ -50,7 +99,7 @@ export class Game {
             return o;
         },
         /**
-         * 
+         * @function AddImage
          * @param {string} key - Image key. Must be unique
          * @param {string} src - Image source
          * @returns {HTMLImageElement}
@@ -63,7 +112,7 @@ export class Game {
             return image;
         },
         /**
-         * 
+         * @function AddSound
          * @param {string} key - Sound key. Must be unique
          * @param {string} src - Sound source
          * @returns {HTMLAudioElement}
@@ -112,7 +161,7 @@ export class Game {
      * @returns {any[]}
      */
     getLevel() {
-        return this._levels[this.level];
+        return this._levels[this._level];
     }
     /**
      * 
@@ -128,15 +177,15 @@ export class Game {
      * @returns {void}
      */
     nextLevel() {
-        this.level++;
-        if (this.level >= this._levels.length) {
+        this._level++;
+        if (this._level >= this._levels.length) {
             return this._sendEvent('END');
         }
         this._init();
     }
     _init() {
         for (let o of this._objects) {
-            o.opts.init(o, this._levels[this.level]);
+            o.opts.init(o, this._levels[this._level]);
         }
     }
     _loop() {

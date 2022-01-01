@@ -1,6 +1,6 @@
 export const SITE = {
-	title: 'Your Documentation Website',
-	description: 'Your website description.',
+	title: '@tinycanvas',
+	description: '@tinycanvas docs',
 	defaultLanguage: 'en_US',
 };
 

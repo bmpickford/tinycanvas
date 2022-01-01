@@ -14,7 +14,7 @@
   "author": "Benjamin Pickford",
   "license": "MIT",
   "dependencies": {
-    "@tinycanvas/core": "^0.0.5",
-    "@tinycanvas/interactions": "^0.0.5"
+    "@tinycanvas/core": "^0.0.6",
+    "@tinycanvas/interactions": "^0.0.6"
   }
 }

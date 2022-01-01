@@ -11,7 +11,7 @@
   "scripts": {
     "build": "npm run clean && npm run build --ws --if-present",
     "clean": "npm exec -c 'rm -rf dist/' --ws",
-    "doc": "for p in ./packages/*; do npx jsdoc2md $p/*.js > docs/$(basename $p).md; done",
+    "doc": "for p in ./packages/*; do npx jsdoc2md $p/*.js > docs/src/pages/en/$(basename $p).md; done",
     "test": "npm run test --ws --if-present",
     "size": "npm run size --ws --if-present",
     "lint": "eslint .",

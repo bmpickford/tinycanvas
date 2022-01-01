@@ -1,30 +1,28 @@
-<a name="module_animations"></a>
+---
+title: Animations
+description: Animations API Doc
+layout: ../../layouts/MainLayout.astro
+---
 
-## animations
+## Exports
 
-* [animations](#module_animations)
-    * _static_
-        * [.add(o, config, [ease], [onComplete])](#module_animations.add)
-        * [.remove(o)](#module_animations.remove) ⇒ <code>void</code>
-    * _inner_
-        * [~AnimationConfig](#module_animations..AnimationConfig) : <code>Object</code>
+### Animation
+**Kind**: static class of [<code>animations</code>](#module_animations)  
 
-<a name="module_animations.add"></a>
-
-### animations.add(o, config, [ease], [onComplete])
+#### add(o, config, [ease], [onComplete])
 **Kind**: static method of [<code>animations</code>](#module_animations)  
 **Access**: public  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | o | <code>module:core~GameObject</code> |  | Object to animate |
-| config | <code>AnimationConfig</code> |  | Config for animation. Should include any of x, y, h, w, r in an object. Can also specify frames and start frame |
-| [ease] | <code>string</code> | <code>&quot;\&quot;linear\&quot;&quot;</code> | Ease string to use. Options are: linear | exp | quint | quad | sine |
+| config | <a href="#animationconfig"><code>AnimationConfig</code></a> |  | Config for animation |
+| [ease] | <code>string</code> | <code>linear</code> | Ease string to use. Options are: linear | exp | quint | quad | sine |
 | [onComplete] | <code>function</code> |  | onComplete callback |
 
 <a name="module_animations.remove"></a>
 
-### animations.remove(o) ⇒ <code>void</code>
+#### remove(o) ⇒ <code>void</code>
 Remove an animation from the current animation list
 
 **Kind**: static method of [<code>animations</code>](#module_animations)  
@@ -36,10 +34,11 @@ Remove an animation from the current animation list
 
 <a name="module_animations..AnimationConfig"></a>
 
-### animations~AnimationConfig : <code>Object</code>
+## Types
+
+### AnimationConfig
 Animation config
 
-**Kind**: inner typedef of [<code>animations</code>](#module_animations)  
 **Properties**
 
 | Name | Type | Default | Description |

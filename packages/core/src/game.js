@@ -90,8 +90,8 @@ export class Game {
          * Add object to the game
          * 
          * @function AddGameObject
-         * @param {import('./gameobject.js').GameObjectOptions} opts - Options to pass through to the game object
-         * @returns {import('./gameobject.js').GameObject}
+         * @param {GameObjectOptions} opts - Options to pass through to the game object
+         * @returns {GameObject}
          */
         object: (opts) => {
             const o = new GameObject(this, opts);
@@ -150,7 +150,7 @@ export class Game {
     /**
      * Gets the currently registered game objects
      * 
-     * @returns {import('./gameobject.js').GameObject[]}
+     * @returns {GameObject[]}
      */
     getObjects() {
         return this._objects;
